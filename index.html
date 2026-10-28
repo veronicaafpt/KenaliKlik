@@ -1,1 +1,307 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KenaliKlik — Jangan Asal Klik, Lindungi Identitas Digitalmu</title>
+<style>
+:root{--bg:#f6f8fb;--sf:#fff;--tx:#14213d;--mu:#5b6882;--ac:#0b7a75;--wa:#e8590c;--bd:#dde3ec;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1526;--sf:#16213a;--tx:#e8eefb;--mu:#9aa8c4;--ac:#3ed6c9;--wa:#ff9b57;--bd:#26345a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0d1526;--sf:#16213a;--tx:#e8eefb;--mu:#9aa8c4;--ac:#3ed6c9;--wa:#ff9b57;--bd:#26345a;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:17px/1.75 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+header{position:sticky;top:env(safe-area-inset-top,0px);background:var(--sf);border-bottom:1px solid var(--bd);z-index:5}
+nav{max-width:860px;margin:auto;padding:12px 20px;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+nav a{color:var(--mu);text-decoration:none;font-size:15px}
+nav a:hover,nav a.on{color:var(--ac)}
+.logo{font-weight:800;color:var(--tx)!important;font-size:19px;margin-right:auto}
+.logo span{color:var(--wa)}
+main{max-width:860px;margin:auto;padding:28px 20px 60px}
+.hero{padding:44px 0 28px}
+.tag{display:inline-block;background:var(--ac);color:var(--bg);padding:3px 12px;border-radius:99px;font-size:13px;font-weight:700;letter-spacing:.04em}
+.hero h1{font-size:clamp(34px,7vw,58px);line-height:1.1;margin:16px 0 12px;letter-spacing:-.02em}
+.hero h1 span{color:var(--wa)}
+.hero p{color:var(--mu);max-width:600px;font-size:19px;margin:0 0 22px}
+.btn{display:inline-block;background:var(--wa);color:#fff;padding:11px 22px;border-radius:10px;text-decoration:none;font-weight:700}
+.rule{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:34px 0}
+.rule div{background:var(--sf);border:1px solid var(--bd);border-left:4px solid var(--wa);border-radius:10px;padding:14px 16px;font-weight:700}
+.rule small{display:block;color:var(--mu);font-weight:400;font-size:14px}
+.cards{display:grid;gap:14px}
+.card{display:block;background:var(--sf);border:1px solid var(--bd);border-radius:14px;padding:20px 22px;text-decoration:none;color:var(--tx);transition:transform .15s,border-color .15s}
+.card:hover{transform:translateY(-2px);border-color:var(--ac)}
+.card b{color:var(--ac);font-size:13px;letter-spacing:.05em}
+.card h3{margin:4px 0 6px;font-size:21px;line-height:1.3}
+.card p{margin:0;color:var(--mu);font-size:15px}
+h2.sec{margin:40px 0 14px;font-size:26px}
+article{background:var(--sf);border:1px solid var(--bd);border-radius:16px;padding:clamp(22px,5vw,44px)}
+article .no{color:var(--wa);font-weight:800;font-size:14px;letter-spacing:.06em}
+article h1{font-size:clamp(28px,5vw,40px);line-height:1.2;margin:6px 0 20px}
+article h2{font-size:23px;margin:34px 0 10px;color:var(--ac)}
+article p{margin:0 0 14px}
+article ul,article ol{padding-left:24px;margin:0 0 16px}
+article li{margin-bottom:7px}
+article p:last-child{color:var(--mu);border-top:1px solid var(--bd);padding-top:14px;margin-top:28px}
+.pn{display:flex;justify-content:space-between;gap:12px;margin-top:20px;flex-wrap:wrap}
+.pn a{color:var(--ac);text-decoration:none;font-weight:700}
+footer{text-align:center;color:var(--mu);font-size:14px;padding:24px 20px 40px}
+#tg{background:none;border:1px solid var(--bd);color:var(--mu);border-radius:8px;padding:4px 10px;cursor:pointer}
+</style>
+</head>
+<body>
+<header><nav>
+<a class="logo" href="#">Kenali<span>Klik</span></a>
+<a href="#" data-p="">Beranda</a><a href="#a1" data-p="a1">Phishing</a><a href="#a2" data-p="a2">OTP</a><a href="#a3" data-p="a3">5 Langkah</a>
+<button id="tg" aria-label="Ganti tema">◐</button>
+</nav></header>
+<main id="app"></main>
+<footer>KenaliKlik — Social Campaign Kejahatan Siber · Tugas APTEKTRANSIDI, ITS</footer>
 
+<script>
+var A=[
+{t:"Phishing: Ketika Penipu Menyamar Menjadi Pihak Tepercaya",s:"Kenali cara kerja phishing dan modus-modus yang paling sering menyasar kita.",b:`
+Pernah menerima pesan yang mengaku berasal dari kurir paket, bank, atau seseorang yang mengirimkan undangan digital? Hati-hati! Bisa jadi pesan tersebut merupakan upaya phishing, yaitu salah satu bentuk kejahatan siber yang bertujuan mencuri informasi pribadi seseorang.
+
+Melalui kampanye **KenaliKlik**, mari kenali cara kerja phishing agar kita tidak mudah terjebak dalam penipuan digital.
+
+## Apa Itu Phishing?
+
+Phishing adalah tindakan penipuan yang dilakukan dengan menyamar sebagai pihak tepercaya untuk mengelabui korban agar memberikan informasi sensitif. Informasi tersebut dapat berupa nama pengguna, kata sandi, kode OTP, data perbankan, atau informasi pribadi lainnya.
+
+Pelaku biasanya memanfaatkan pesan singkat, email, media sosial, atau situs web palsu untuk membuat korban percaya bahwa pesan yang diterima benar-benar berasal dari pihak resmi.
+
+## Bagaimana Cara Kerja Phishing?
+
+Phishing umumnya dilakukan melalui beberapa tahapan:
+
+1. **Menghubungi korban.** Pelaku mengirimkan pesan yang tampak meyakinkan dan mengatasnamakan pihak tertentu.
+2. **Menciptakan rasa panik atau penasaran.** Korban diberi tahu bahwa paket bermasalah, rekening akan diblokir, atau ada undangan penting yang harus dibuka.
+3. **Mengarahkan korban ke tautan tertentu.** Tautan tersebut dapat mengarah ke situs palsu atau mengunduh file berbahaya.
+4. **Mencuri informasi.** Ketika korban memasukkan informasi sensitif, pelaku dapat memanfaatkannya untuk mengambil alih akun atau melakukan tindakan penipuan lainnya.
+
+Tidak semua phishing menggunakan cara yang sama. Ada juga pelaku yang mengarahkan korban untuk mengunduh aplikasi berbahaya atau menghubungi nomor tertentu.
+
+## Contoh Modus Phishing yang Perlu Diwaspadai
+
+**1. Pesan dari kurir paket**
+
+Korban menerima pesan yang menyatakan bahwa paket tidak dapat dikirim karena alamat tidak lengkap. Pesan tersebut menyertakan tautan untuk memperbarui informasi atau mengunduh dokumen.
+
+**2. Pesan yang mengatasnamakan bank**
+
+Korban diberi tahu bahwa rekening akan diblokir atau terdapat transaksi mencurigakan. Pelaku meminta korban mengeklik tautan dan memasukkan informasi rekening atau data login.
+
+**3. Undangan digital**
+
+Korban menerima undangan pernikahan atau acara lain dalam bentuk tautan atau file aplikasi. Jika tidak berhati-hati, korban dapat diarahkan ke situs palsu atau diminta memasang aplikasi yang berisiko membahayakan keamanan perangkat.
+
+Ingat, pesan semacam ini belum tentu penipuan. Namun, jika terdapat permintaan yang tidak wajar atau tautan yang mencurigakan, jangan langsung mempercayainya.
+
+## Tanda-Tanda Pesan Phishing
+
+Beberapa tanda yang perlu diperhatikan antara lain:
+
+- Pengirim menggunakan alamat email atau nomor yang tidak dikenal.
+- Pesan mendesak penerima untuk segera bertindak, misalnya dengan ancaman pemblokiran akun.
+- Tautan memiliki domain yang berbeda dari situs resmi.
+- Pesan meminta kata sandi, kode OTP, PIN, atau data sensitif lainnya.
+- Terdapat kesalahan penulisan, informasi yang tidak masuk akal, atau format pesan yang tidak biasa.
+- Lampiran meminta penerima mengunduh atau memasang aplikasi yang tidak jelas sumbernya.
+
+Satu tanda saja tidak selalu membuktikan bahwa sebuah pesan adalah phishing. Periksa konteks dan verifikasi informasi sebelum mengambil tindakan.
+
+## Apa yang Harus Dilakukan Sebelum Mengeklik Tautan?
+
+Sebelum membuka tautan dalam pesan, lakukan langkah berikut:
+
+1. **Berhenti sejenak.** Jangan terburu-buru karena pesan mendesak belum tentu benar.
+2. **Periksa identitas pengirim.** Jangan hanya mengandalkan nama atau foto profil.
+3. **Periksa alamat tautan.** Perhatikan ejaan domain dan alamat situs yang dituju. Hindari membuka tautan yang tidak jelas.
+4. **Verifikasi melalui kanal resmi.** Buka aplikasi resmi atau ketik alamat situs resmi secara mandiri, bukan melalui tautan dalam pesan.
+5. **Jangan masukkan informasi sensitif.** Hindari memberikan kata sandi, PIN, dan kode OTP melalui tautan atau kepada pihak yang menghubungi secara tiba-tiba.
+
+Jika telanjur mengeklik tautan, segera tutup halaman tersebut dan jangan mengisi informasi apa pun. Jika sudah memberikan data atau memasang aplikasi mencurigakan, amankan akun dan perangkat sesegera mungkin.
+
+## Kesimpulan
+
+Phishing dapat menyasar siapa saja, terutama ketika seseorang sedang terburu-buru atau lengah. Oleh karena itu, biasakan untuk memeriksa pengirim, memastikan alamat situs, dan melakukan verifikasi melalui kanal resmi.
+
+**Jangan asal klik. Kenali modusnya, lindungi datanya, dan sebarkan kewaspadaannya!**
+
+*KenaliKlik — Jangan Asal Klik, Lindungi Identitas Digitalmu.*`},
+{t:"OTP Bukan untuk Dibagikan: Lindungi Akun Digitalmu",s:"Kode OTP adalah rahasiamu. Pahami kenapa dan apa yang harus dilakukan jika telanjur dibagikan.",b:`
+Pernah menerima kode OTP padahal kamu tidak sedang masuk ke akun atau melakukan transaksi? Jangan abaikan situasi tersebut! Kode OTP yang tiba-tiba masuk bisa menjadi tanda bahwa seseorang sedang mencoba mengakses akunmu.
+
+Kode OTP merupakan salah satu lapisan keamanan akun digital. Namun, perlindungan ini dapat menjadi tidak efektif jika kodenya diberikan kepada orang lain.
+
+## Apa Itu Kode OTP?
+
+OTP merupakan singkatan dari *One-Time Password*, yaitu kode verifikasi sekali pakai yang digunakan untuk mengonfirmasi identitas pengguna atau menyetujui tindakan tertentu.
+
+Kode ini biasanya dikirim melalui SMS, email, atau aplikasi autentikasi. OTP dapat digunakan ketika pengguna masuk ke akun, mengatur ulang kata sandi, atau melakukan transaksi tertentu.
+
+Karena dapat digunakan untuk menyelesaikan proses verifikasi, kode OTP harus dijaga kerahasiaannya.
+
+## Mengapa Kode OTP Tidak Boleh Diberikan kepada Orang Lain?
+
+Pelaku penipuan dapat berpura-pura menjadi petugas bank, layanan pelanggan, kurir, atau pihak lain yang dipercaya korban. Mereka kemudian meminta kode OTP dengan alasan verifikasi akun, pembatalan transaksi, atau penyelesaian masalah.
+
+Padahal, kode tersebut bisa digunakan untuk menyelesaikan proses masuk atau tindakan yang sedang dicoba pelaku.
+
+Perlu diingat, **jangan pernah memberikan kode OTP kepada orang lain**, termasuk seseorang yang mengaku sebagai petugas resmi. Jangan pula membagikannya melalui chat, telepon, atau media sosial.
+
+## Contoh Skenario Penipuan OTP
+
+Bayangkan kamu menerima telepon dari seseorang yang mengaku sebagai petugas layanan pelanggan. Orang tersebut mengatakan bahwa akunmu mengalami masalah dan perlu diverifikasi.
+
+Tidak lama kemudian, sebuah kode OTP masuk ke ponselmu. Pelaku meminta kode tersebut dengan alasan untuk menyelesaikan proses verifikasi.
+
+Jika kamu memberikan kode itu, pelaku mungkin dapat menyelesaikan proses autentikasi yang sedang dilakukannya. Dampaknya bergantung pada layanan, pengaturan keamanan, dan tindakan yang berhasil dilakukan pelaku.
+
+**Apa yang sebaiknya dilakukan?**
+
+- Jangan memberikan kode OTP.
+- Akhiri komunikasi jika permintaannya mencurigakan.
+- Hubungi layanan terkait melalui aplikasi, nomor telepon, atau situs resmi.
+- Periksa aktivitas akun jika kamu tidak merasa melakukan permintaan verifikasi.
+
+## Bagaimana Jika Kode OTP Telanjur Dibagikan?
+
+Jangan panik, tetapi segera lakukan tindakan untuk mengurangi risiko.
+
+**1. Amankan akun**
+
+Jika masih dapat mengakses akun, ganti kata sandi melalui aplikasi atau situs resmi. Jika kata sandi yang sama digunakan di layanan lain, ganti juga kata sandi pada layanan tersebut.
+
+**2. Periksa aktivitas akun**
+
+Periksa riwayat login, transaksi, perubahan informasi pemulihan, dan aktivitas lain yang tidak kamu kenali.
+
+**3. Hubungi penyedia layanan**
+
+Gunakan kanal resmi bank, dompet digital, media sosial, atau layanan terkait untuk melaporkan kejadian tersebut dan meminta bantuan pengamanan akun.
+
+**4. Amankan transaksi keuangan**
+
+Jika berkaitan dengan rekening atau dompet digital, segera hubungi penyedia layanan. Jika ada transaksi tidak sah, laporkan secepat mungkin dan ikuti prosedur penanganannya.
+
+**5. Amankan perangkat**
+
+Jika kamu juga memasang aplikasi dari sumber tidak jelas, hentikan penggunaannya dan lakukan pemeriksaan keamanan perangkat. Hindari memasukkan informasi sensitif melalui aplikasi yang mencurigakan.
+
+## Tips Menjaga Keamanan Kode OTP
+
+Agar akun tetap aman, biasakan melakukan hal-hal berikut:
+
+- Jangan membagikan OTP kepada siapa pun.
+- Jangan menyetujui permintaan login atau verifikasi yang tidak kamu lakukan.
+- Gunakan kata sandi yang kuat dan berbeda untuk setiap akun.
+- Aktifkan fitur keamanan tambahan yang tersedia.
+- Waspadai telepon atau pesan yang meminta kode dengan alasan mendesak.
+
+## Kesimpulan
+
+Kode OTP bukan sekadar deretan angka. Kode tersebut dapat menjadi bagian penting dari perlindungan akun digitalmu. Menjaganya tetap rahasia merupakan langkah sederhana untuk mengurangi risiko pengambilalihan akun dan penyalahgunaan informasi pribadi.
+
+**Ingat, kode OTP adalah rahasiamu. Jangan bagikan, meskipun yang meminta mengaku sebagai pihak tepercaya!**
+
+*KenaliKlik — Jangan Asal Klik, Lindungi Identitas Digitalmu.*`},
+{t:"Dapat Pesan Mencurigakan? Lakukan 5 Langkah Ini",s:"Lima langkah sederhana dan checklist cepat sebelum kamu memercayai sebuah pesan.",b:`
+Pesan singkat yang menawarkan hadiah, pemberitahuan paket, hingga peringatan masalah rekening sering muncul di ponsel kita. Sebagian pesan memang berasal dari pihak yang sah, tetapi ada juga yang digunakan untuk melakukan penipuan digital.
+
+Jika menerima pesan yang terasa janggal, jangan langsung mengeklik tautan atau mengikuti instruksi di dalamnya. Ada lima langkah sederhana yang bisa kamu lakukan untuk melindungi diri.
+
+## 1. Jangan Langsung Mengeklik Tautan
+
+Tautan dalam pesan mencurigakan dapat mengarah ke situs palsu, halaman login tiruan, atau unduhan berbahaya.
+
+Misalnya, kamu menerima pesan yang menyatakan bahwa paket tertahan dan kamu harus membayar biaya tambahan melalui sebuah tautan. Jangan terburu-buru membuka tautan tersebut.
+
+Periksa informasi pengiriman melalui aplikasi atau situs resmi penyedia jasa kurir. Jika kamu tidak yakin dengan sumber pesan, lebih baik jangan berinteraksi dengan tautannya.
+
+## 2. Periksa Alamat Pengirim dan Domain
+
+Perhatikan siapa yang mengirimkan pesan. Nama profil atau logo yang terlihat resmi tidak menjamin bahwa pengirim benar-benar berasal dari organisasi tersebut.
+
+Periksa juga alamat email, nomor pengirim, dan domain situs yang dicantumkan. Pelaku dapat menggunakan alamat yang menyerupai situs asli dengan menambahkan karakter, mengubah ejaan, atau memakai domain berbeda.
+
+Namun, pengirim yang terlihat familiar pun tetap perlu diperiksa karena akun atau nomor telepon dapat disalahgunakan.
+
+## 3. Konfirmasi Melalui Kanal Resmi
+
+Jika pesan mengatasnamakan bank, kurir, marketplace, atau instansi tertentu, lakukan verifikasi secara mandiri.
+
+Caranya:
+
+- Buka aplikasi resmi yang sudah terpasang di perangkat.
+- Ketik alamat situs resmi secara langsung pada browser.
+- Hubungi layanan pelanggan melalui informasi kontak resmi.
+- Periksa pengumuman atau notifikasi melalui akun resmi penyedia layanan.
+
+Jangan menggunakan nomor telepon atau tautan yang diberikan dalam pesan mencurigakan sebagai satu-satunya sumber verifikasi.
+
+## 4. Jangan Membagikan Kata Sandi atau OTP
+
+Pesan mencurigakan terkadang meminta penerima mengisi kata sandi, PIN, kode OTP, atau informasi pribadi dengan alasan verifikasi.
+
+Jangan memberikan informasi tersebut kepada orang yang menghubungimu secara tiba-tiba. Jangan pula menyetujui permintaan login atau autentikasi yang tidak kamu lakukan.
+
+Jika sudah terlanjur memberikan informasi sensitif, segera ganti kata sandi melalui kanal resmi, periksa aktivitas akun, dan hubungi penyedia layanan jika diperlukan.
+
+## 5. Laporkan dan Blokir Pesan yang Terindikasi Penipuan
+
+Jika pesan terindikasi sebagai penipuan, simpan bukti yang diperlukan, seperti tangkapan layar, nomor pengirim, atau alamat situs. Jangan menyebarkan tautan berbahaya kepada orang lain.
+
+Selanjutnya:
+
+- Gunakan fitur **Laporkan sebagai spam** atau **Laporkan** pada aplikasi yang digunakan.
+- Blokir pengirim jika diperlukan.
+- Laporkan kepada penyedia layanan atau platform terkait.
+- Jika ada kerugian finansial atau penyalahgunaan akun, hubungi bank atau penyedia layanan secepatnya dan gunakan kanal pelaporan resmi yang tersedia.
+
+Jangan lupa untuk memberi tahu keluarga atau teman jika modus tersebut berpotensi menyasar mereka juga.
+
+## Checklist Sebelum Memercayai Pesan
+
+Sebelum mengikuti instruksi dalam sebuah pesan, tanyakan hal-hal berikut kepada dirimu sendiri:
+
+- Apakah saya mengenal dan dapat memverifikasi pengirimnya?
+- Apakah isi pesan membuat saya panik atau terburu-buru?
+- Apakah tautannya benar-benar mengarah ke situs resmi?
+- Apakah pesan meminta kata sandi, PIN, atau kode OTP?
+- Apakah informasi tersebut dapat saya konfirmasi melalui aplikasi resmi?
+
+Jika masih ragu, jangan lanjutkan prosesnya sebelum melakukan verifikasi.
+
+## Kesimpulan
+
+Menghadapi pesan mencurigakan tidak harus membuat kita panik. Dengan berhenti sejenak, memeriksa pengirim, melakukan verifikasi, menjaga informasi sensitif, serta melaporkan pesan yang terindikasi penipuan, kita dapat mengurangi risiko menjadi korban kejahatan siber.
+
+**Berhenti sebelum klik. Periksa sebelum percaya. Laporkan jika mencurigakan.**
+
+*KenaliKlik — Jangan Asal Klik, Lindungi Identitas Digitalmu.*`}
+];
+function inl(t){return t.replace(/\*\*(.+?)\*\*/g,"<b>$1</b>").replace(/\*(.+?)\*/g,"<i>$1</i>")}
+function md(s){var o=[],ls=null;s.trim().split("\n").forEach(function(l){
+var m=l.match(/^\d+\. (.*)/),b=l.match(/^- (.*)/),t=m?"ol":b?"ul":null;
+if(ls&&ls!==t){o.push("</"+ls+">");ls=null}
+if(t){if(!ls){o.push("<"+t+">");ls=t}o.push("<li>"+inl((m||b)[1])+"</li>")}
+else if(l.indexOf("## ")===0)o.push("<h2>"+inl(l.slice(3))+"</h2>");
+else if(l.trim())o.push("<p>"+inl(l)+"</p>")});
+if(ls)o.push("</"+ls+">");return o.join("")}
+function render(){
+var h=(location.hash||"#").slice(1),i=["a1","a2","a3"].indexOf(h),app=document.getElementById("app");
+document.querySelectorAll("nav a[data-p]").forEach(function(a){a.classList.toggle("on",a.dataset.p===h)});
+window.scrollTo(0,0);
+if(i<0){
+var c=A.map(function(a,k){return '<a class="card" href="#a'+(k+1)+'"><b>ARTIKEL '+(k+1)+'</b><h3>'+a.t+'</h3><p>'+a.s+'</p></a>'}).join("");
+app.innerHTML='<section class="hero"><span class="tag">SOCIAL CAMPAIGN · KEJAHATAN SIBER</span><h1>Jangan Asal <span>Klik.</span></h1><p>KenaliKlik mengajak kita mengenali phishing, menjaga kode OTP, dan bertindak tepat saat menerima pesan mencurigakan.</p><a class="btn" href="#a1">Mulai membaca</a></section><div class="rule"><div>Berhenti<small>sebelum klik</small></div><div>Periksa<small>sebelum percaya</small></div><div>Laporkan<small>jika mencurigakan</small></div></div><h2 class="sec">Artikel Kampanye</h2><div class="cards">'+c+'</div>';
+document.title="KenaliKlik — Jangan Asal Klik, Lindungi Identitas Digitalmu";return}
+var a=A[i],p=i>0?'<a href="#a'+i+'">← Sebelumnya</a>':"<span></span>",n=i<2?'<a href="#a'+(i+2)+'">Berikutnya →</a>':'<a href="#">Beranda →</a>';
+app.innerHTML='<article><span class="no">ARTIKEL '+(i+1)+' DARI 3</span><h1>'+a.t+'</h1>'+md(a.b)+'</article><div class="pn">'+p+n+'</div>';
+document.title=a.t+" · KenaliKlik"}
+window.addEventListener("hashchange",render);render();
+document.getElementById("tg").onclick=function(){var r=document.documentElement,d=r.dataset.theme==="dark"||(!r.dataset.theme&&matchMedia("(prefers-color-scheme:dark)").matches);r.dataset.theme=d?"light":"dark"};
+</script>
+</body>
+</html>
