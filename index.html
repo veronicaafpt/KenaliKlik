@@ -1,307 +1,342 @@
-<!DOCTYPE html>
+from pathlib import Path
+
+html = r'''<!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>KenaliKlik — Jangan Asal Klik, Lindungi Identitas Digitalmu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="KenaliKlik adalah kampanye edukasi untuk mengenali phishing, menjaga kode OTP, dan melindungi diri dari penipuan digital.">
+<title>KenaliKlik — Jangan Asal Klik</title>
 <style>
-:root{--bg:#f6f8fb;--sf:#fff;--tx:#14213d;--mu:#5b6882;--ac:#0b7a75;--wa:#e8590c;--bd:#dde3ec;color-scheme:light}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1526;--sf:#16213a;--tx:#e8eefb;--mu:#9aa8c4;--ac:#3ed6c9;--wa:#ff9b57;--bd:#26345a;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#0d1526;--sf:#16213a;--tx:#e8eefb;--mu:#9aa8c4;--ac:#3ed6c9;--wa:#ff9b57;--bd:#26345a;color-scheme:dark}
+:root{
+  --navy:#102b4e; --navy-2:#173d65; --blue:#286a8a; --teal:#2a8c82;
+  --mint:#e6f3ef; --gold:#f2c66d; --paper:#f7f8f5; --white:#fff;
+  --ink:#172b3d; --muted:#657584; --line:#e0e7e8; --shadow:0 14px 35px rgba(16,43,78,.09);
+}
 *{box-sizing:border-box}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--tx);font:17px/1.75 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-header{position:sticky;top:env(safe-area-inset-top,0px);background:var(--sf);border-bottom:1px solid var(--bd);z-index:5}
-nav{max-width:860px;margin:auto;padding:12px 20px;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
-nav a{color:var(--mu);text-decoration:none;font-size:15px}
-nav a:hover,nav a.on{color:var(--ac)}
-.logo{font-weight:800;color:var(--tx)!important;font-size:19px;margin-right:auto}
-.logo span{color:var(--wa)}
-main{max-width:860px;margin:auto;padding:28px 20px 60px}
-.hero{padding:44px 0 28px}
-.tag{display:inline-block;background:var(--ac);color:var(--bg);padding:3px 12px;border-radius:99px;font-size:13px;font-weight:700;letter-spacing:.04em}
-.hero h1{font-size:clamp(34px,7vw,58px);line-height:1.1;margin:16px 0 12px;letter-spacing:-.02em}
-.hero h1 span{color:var(--wa)}
-.hero p{color:var(--mu);max-width:600px;font-size:19px;margin:0 0 22px}
-.btn{display:inline-block;background:var(--wa);color:#fff;padding:11px 22px;border-radius:10px;text-decoration:none;font-weight:700}
-.rule{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:34px 0}
-.rule div{background:var(--sf);border:1px solid var(--bd);border-left:4px solid var(--wa);border-radius:10px;padding:14px 16px;font-weight:700}
-.rule small{display:block;color:var(--mu);font-weight:400;font-size:14px}
-.cards{display:grid;gap:14px}
-.card{display:block;background:var(--sf);border:1px solid var(--bd);border-radius:14px;padding:20px 22px;text-decoration:none;color:var(--tx);transition:transform .15s,border-color .15s}
-.card:hover{transform:translateY(-2px);border-color:var(--ac)}
-.card b{color:var(--ac);font-size:13px;letter-spacing:.05em}
-.card h3{margin:4px 0 6px;font-size:21px;line-height:1.3}
-.card p{margin:0;color:var(--mu);font-size:15px}
-h2.sec{margin:40px 0 14px;font-size:26px}
-article{background:var(--sf);border:1px solid var(--bd);border-radius:16px;padding:clamp(22px,5vw,44px)}
-article .no{color:var(--wa);font-weight:800;font-size:14px;letter-spacing:.06em}
-article h1{font-size:clamp(28px,5vw,40px);line-height:1.2;margin:6px 0 20px}
-article h2{font-size:23px;margin:34px 0 10px;color:var(--ac)}
-article p{margin:0 0 14px}
-article ul,article ol{padding-left:24px;margin:0 0 16px}
-article li{margin-bottom:7px}
-article p:last-child{color:var(--mu);border-top:1px solid var(--bd);padding-top:14px;margin-top:28px}
-.pn{display:flex;justify-content:space-between;gap:12px;margin-top:20px;flex-wrap:wrap}
-.pn a{color:var(--ac);text-decoration:none;font-weight:700}
-footer{text-align:center;color:var(--mu);font-size:14px;padding:24px 20px 40px}
-#tg{background:none;border:1px solid var(--bd);color:var(--mu);border-radius:8px;padding:4px 10px;cursor:pointer}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.7 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:inherit}
+button{font:inherit}
+.site-header{position:sticky;top:0;z-index:20;background:rgba(16,43,78,.97);color:#fff;backdrop-filter:blur(12px);box-shadow:0 3px 18px #102b4e18}
+.nav{max-width:1160px;margin:auto;padding:13px 24px;display:flex;align-items:center;gap:24px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:auto;font-weight:850;font-size:1.3rem;letter-spacing:-.04em}
+.brand-mark{width:37px;height:37px;border-radius:12px;background:var(--gold);display:grid;place-items:center;color:var(--navy);font-size:1.05rem;font-weight:950}
+.brand span span{color:var(--gold)}
+.nav-links{display:flex;align-items:center;gap:23px}
+.nav-links a{color:#e1eaf2;text-decoration:none;font-size:.9rem;font-weight:650}
+.nav-links a:hover,.nav-links a.active{color:var(--gold)}
+.menu-toggle{display:none;border:1px solid #ffffff55;background:transparent;color:#fff;border-radius:10px;padding:6px 11px}
+main{min-height:70vh}
+.container{width:min(1120px,calc(100% - 40px));margin:auto}
+.hero-wrap{background:var(--navy);color:#fff;overflow:hidden}
+.hero{display:grid;grid-template-columns:1.02fr .98fr;gap:48px;align-items:center;padding:64px 0 68px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;text-transform:uppercase;letter-spacing:.12em;font-size:.74rem;font-weight:800;color:var(--gold)}
+.eyebrow:before{content:"";width:25px;height:2px;background:var(--gold)}
+.hero h1{font-size:clamp(2.6rem,5.3vw,4.6rem);line-height:1.03;letter-spacing:-.06em;margin:18px 0}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p{max-width:540px;color:#d3e0eb;font-size:1.08rem;margin:0 0 26px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 19px;border-radius:12px;text-decoration:none;font-weight:800;border:1px solid transparent;cursor:pointer;transition:.2s}
+.btn-primary{background:var(--gold);color:var(--navy)}
+.btn-primary:hover{transform:translateY(-2px);background:#ffda86}
+.btn-ghost{border-color:#ffffff6b;color:#fff;background:transparent}
+.btn-ghost:hover{background:#ffffff12}
+.hero-visual{position:relative;min-height:380px}
+.hero-photo{position:absolute;inset:0 28px 28px 0;border-radius:24px;overflow:hidden;background:#244a65}
+.hero-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.photo-shade{position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(9,29,51,.72))}
+.photo-label{position:absolute;bottom:24px;left:24px;right:24px;color:#fff}
+.photo-label small{color:var(--gold);font-weight:850;text-transform:uppercase;letter-spacing:.1em}
+.photo-label h2{font-size:1.5rem;line-height:1.25;margin:5px 0}
+.float-note{position:absolute;right:0;bottom:0;background:var(--gold);color:var(--navy);padding:17px 20px;border-radius:16px;box-shadow:var(--shadow);font-weight:850;max-width:190px;line-height:1.35}
+.float-note span{display:block;font-size:.8rem;font-weight:600;margin-top:5px}
+.quick-rules{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:-1px}
+.rule{padding:22px 24px;background:#fff;border:1px solid var(--line);border-top:3px solid var(--teal)}
+.rule strong{display:block;color:var(--navy);font-size:1.03rem}
+.rule p{margin:3px 0 0;color:var(--muted);font-size:.9rem}
+.section{padding:64px 0}
+.section-head{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:25px}
+.kicker{font-size:.75rem;text-transform:uppercase;letter-spacing:.13em;font-weight:850;color:var(--teal)}
+h2.section-title{font-size:clamp(1.8rem,3vw,2.55rem);line-height:1.15;letter-spacing:-.045em;margin:6px 0 0;color:var(--navy)}
+.section-head p{max-width:440px;color:var(--muted);margin:0}
+.article-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.article-card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 5px 18px #102b4e08;transition:transform .2s,box-shadow .2s}
+.article-card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.article-image{height:205px;position:relative;background:#dce8e8;overflow:hidden}
+.article-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.article-card:hover .article-image img{transform:scale(1.04)}
+.category{position:absolute;top:14px;left:14px;background:var(--gold);color:var(--navy);font-size:.72rem;font-weight:850;text-transform:uppercase;letter-spacing:.07em;border-radius:7px;padding:5px 9px}
+.article-content{padding:21px}
+.article-meta{font-size:.78rem;color:var(--muted);margin-bottom:8px}
+.article-card h3{font-size:1.18rem;line-height:1.35;letter-spacing:-.02em;margin:0 0 10px;color:var(--navy)}
+.article-card p{color:var(--muted);font-size:.92rem;margin:0 0 17px}
+.read-link{display:inline-flex;gap:8px;align-items:center;color:var(--teal);font-weight:850;font-size:.9rem;text-decoration:none}
+.read-link:hover{color:var(--navy)}
+.campaign-band{background:var(--mint);border:1px solid #cde5dd;border-radius:22px;padding:30px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
+.campaign-band h2{margin:0 0 6px;color:var(--navy);font-size:1.7rem;line-height:1.2}
+.campaign-band p{margin:0;color:#4e6b70;max-width:690px}
+.btn-teal{background:var(--teal);color:#fff}
+.btn-teal:hover{background:#216e67}
+.page{padding:45px 0 75px}
+.page-intro{background:var(--navy);color:#fff;padding:38px;border-radius:22px;margin-bottom:28px}
+.page-intro .kicker{color:var(--gold)}
+.page-intro h1{font-size:clamp(2rem,4vw,3.2rem);line-height:1.12;letter-spacing:-.05em;margin:8px 0 12px}
+.page-intro p{color:#d3e0eb;max-width:760px;margin:0}
+.article-body{max-width:850px;margin:auto;background:#fff;border:1px solid var(--line);border-radius:20px;padding:clamp(24px,5vw,54px);box-shadow:0 8px 28px #102b4e08}
+.article-body .article-meta{margin-bottom:14px}
+.article-body h1{font-size:clamp(2rem,4vw,3rem);line-height:1.15;letter-spacing:-.045em;color:var(--navy);margin:0 0 22px}
+.article-body h2{color:var(--navy);font-size:1.45rem;line-height:1.3;margin:34px 0 10px}
+.article-body p{margin:0 0 15px}
+.article-body li{margin-bottom:8px;padding-left:4px}
+.article-body ul,.article-body ol{padding-left:24px}
+.article-callout{background:var(--mint);border-left:4px solid var(--teal);padding:16px 18px;border-radius:0 12px 12px 0;margin:24px 0;font-weight:650}
+.article-pager{display:flex;justify-content:space-between;gap:15px;margin-top:22px}
+.article-pager a{color:var(--teal);font-weight:800;text-decoration:none}
+.quiz-box{background:#fff;border:1px solid var(--line);border-radius:20px;padding:clamp(22px,4vw,36px);box-shadow:var(--shadow)}
+.quiz-scenario{background:var(--navy);color:#fff;border-radius:15px;padding:23px;margin:18px 0}
+.fake-message{background:#fff;color:var(--ink);padding:16px;border-radius:12px;max-width:560px;box-shadow:0 5px 20px #0001}
+.fake-message small{display:block;color:var(--muted);margin-bottom:6px}
+.quiz-options{display:grid;gap:10px}
+.quiz-option{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;cursor:pointer;color:var(--ink)}
+.quiz-option:hover{border-color:var(--teal);background:#f5fbf9}
+.quiz-option:focus-visible,.btn:focus-visible,a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.quiz-option b{color:var(--teal)}
+.quiz-feedback{margin-top:16px;padding:15px 17px;border-radius:12px;background:var(--mint);color:var(--navy);display:none}
+.quiz-feedback.show{display:block}
+.reference-list{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.reference-card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:22px}
+.reference-card h3{margin:0 0 6px;color:var(--navy)}
+.reference-card p{color:var(--muted);font-size:.92rem;margin:0 0 12px}
+.reference-card a{color:var(--teal);font-weight:800;text-decoration:none;overflow-wrap:anywhere}
+.about-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:25px;align-items:start}
+.profile-card{background:var(--navy);color:#fff;padding:28px;border-radius:20px}
+.profile-avatar{width:76px;height:76px;border-radius:22px;background:var(--gold);color:var(--navy);display:grid;place-items:center;font-size:1.7rem;font-weight:900;margin-bottom:18px}
+.profile-card h2{margin:0;font-size:1.4rem;line-height:1.3}
+.profile-card p{color:#d3e0eb;margin:7px 0 0}
+.about-copy{background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px}
+.about-copy h2{margin:0 0 10px;color:var(--navy)}
+.about-copy p{color:#4f6170}
+.about-copy ul{padding-left:20px}
+.site-footer{background:var(--navy);color:#d3e0eb;padding:34px 0}
+.footer-inner{display:flex;justify-content:space-between;gap:25px;align-items:center}
+.footer-brand{font-weight:900;color:#fff;font-size:1.2rem}
+.footer-brand span{color:var(--gold)}
+.footer-inner p{font-size:.85rem;margin:5px 0 0;color:#aebfd0}
+.footer-links{display:flex;gap:17px;flex-wrap:wrap}
+.footer-links a{color:#d3e0eb;text-decoration:none;font-size:.88rem}
+.footer-links a:hover{color:var(--gold)}
+.hidden{display:none!important}
+@media(max-width:800px){
+ .hero{grid-template-columns:1fr;gap:28px;padding:48px 0}
+ .hero-visual{min-height:340px}
+ .article-grid{grid-template-columns:repeat(2,1fr)}
+ .article-grid .article-card:last-child{grid-column:span 2}
+ .section-head{align-items:start;flex-direction:column}
+ .about-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+ .nav{padding:11px 18px;gap:12px}
+ .menu-toggle{display:block}
+ .nav-links{display:none;position:absolute;top:62px;left:0;right:0;background:var(--navy);padding:12px 20px 20px;flex-direction:column;align-items:stretch;gap:0;border-top:1px solid #ffffff22}
+ .nav-links.open{display:flex}
+ .nav-links a{padding:11px 2px;border-bottom:1px solid #ffffff18}
+ .container{width:calc(100% - 32px)}
+ .hero{padding:38px 0 45px}
+ .hero-visual{min-height:280px}
+ .hero-photo{inset:0 16px 18px 0}
+ .float-note{max-width:160px;padding:12px;font-size:.9rem}
+ .quick-rules{grid-template-columns:1fr;gap:0}
+ .rule{padding:17px 20px}
+ .section{padding:45px 0}
+ .article-grid{grid-template-columns:1fr}
+ .article-grid .article-card:last-child{grid-column:auto}
+ .article-image{height:220px}
+ .campaign-band{grid-template-columns:1fr;padding:23px}
+ .page{padding:28px 0 50px}
+ .page-intro{padding:26px}
+ .reference-list{grid-template-columns:1fr}
+ .footer-inner{align-items:flex-start;flex-direction:column}
+ .article-pager{font-size:.9rem}
+}
 </style>
 </head>
 <body>
-<header><nav>
-<a class="logo" href="#">Kenali<span>Klik</span></a>
-<a href="#" data-p="">Beranda</a><a href="#a1" data-p="a1">Phishing</a><a href="#a2" data-p="a2">OTP</a><a href="#a3" data-p="a3">5 Langkah</a>
-<button id="tg" aria-label="Ganti tema">◐</button>
-</nav></header>
+<header class="site-header">
+  <nav class="nav container" aria-label="Navigasi utama">
+    <a class="brand" href="#beranda" aria-label="KenaliKlik Beranda"><span class="brand-mark">K!</span><span>Kenali<span>Klik</span></span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Buka menu" aria-expanded="false">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#beranda" data-page="beranda">Beranda</a>
+      <a href="#artikel" data-page="artikel">Artikel</a>
+      <a href="#kuis" data-page="kuis">Kuis Mini</a>
+      <a href="#referensi" data-page="referensi">Referensi</a>
+      <a href="#tentang" data-page="tentang">Tentang</a>
+    </div>
+  </nav>
+</header>
+
 <main id="app"></main>
-<footer>KenaliKlik — Social Campaign Kejahatan Siber · Tugas APTEKTRANSIDI, ITS</footer>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <div class="footer-brand">Kenali<span>Klik</span></div>
+      <p>Social campaign edukasi phishing dan keamanan digital.</p>
+      <p>Proyek tugas APTEKTRANSIDI · Departemen Statistika ITS</p>
+    </div>
+    <div class="footer-links">
+      <a href="#artikel">Artikel</a><a href="#kuis">Kuis mini</a><a href="#referensi">Referensi</a><a href="#tentang">Tentang kampanye</a>
+    </div>
+  </div>
+</footer>
 
 <script>
-var A=[
-{t:"Phishing: Ketika Penipu Menyamar Menjadi Pihak Tepercaya",s:"Kenali cara kerja phishing dan modus-modus yang paling sering menyasar kita.",b:`
-Pernah menerima pesan yang mengaku berasal dari kurir paket, bank, atau seseorang yang mengirimkan undangan digital? Hati-hati! Bisa jadi pesan tersebut merupakan upaya phishing, yaitu salah satu bentuk kejahatan siber yang bertujuan mencuri informasi pribadi seseorang.
-
-Melalui kampanye **KenaliKlik**, mari kenali cara kerja phishing agar kita tidak mudah terjebak dalam penipuan digital.
-
-## Apa Itu Phishing?
-
-Phishing adalah tindakan penipuan yang dilakukan dengan menyamar sebagai pihak tepercaya untuk mengelabui korban agar memberikan informasi sensitif. Informasi tersebut dapat berupa nama pengguna, kata sandi, kode OTP, data perbankan, atau informasi pribadi lainnya.
-
-Pelaku biasanya memanfaatkan pesan singkat, email, media sosial, atau situs web palsu untuk membuat korban percaya bahwa pesan yang diterima benar-benar berasal dari pihak resmi.
-
-## Bagaimana Cara Kerja Phishing?
-
-Phishing umumnya dilakukan melalui beberapa tahapan:
-
-1. **Menghubungi korban.** Pelaku mengirimkan pesan yang tampak meyakinkan dan mengatasnamakan pihak tertentu.
-2. **Menciptakan rasa panik atau penasaran.** Korban diberi tahu bahwa paket bermasalah, rekening akan diblokir, atau ada undangan penting yang harus dibuka.
-3. **Mengarahkan korban ke tautan tertentu.** Tautan tersebut dapat mengarah ke situs palsu atau mengunduh file berbahaya.
-4. **Mencuri informasi.** Ketika korban memasukkan informasi sensitif, pelaku dapat memanfaatkannya untuk mengambil alih akun atau melakukan tindakan penipuan lainnya.
-
-Tidak semua phishing menggunakan cara yang sama. Ada juga pelaku yang mengarahkan korban untuk mengunduh aplikasi berbahaya atau menghubungi nomor tertentu.
-
-## Contoh Modus Phishing yang Perlu Diwaspadai
-
-**1. Pesan dari kurir paket**
-
-Korban menerima pesan yang menyatakan bahwa paket tidak dapat dikirim karena alamat tidak lengkap. Pesan tersebut menyertakan tautan untuk memperbarui informasi atau mengunduh dokumen.
-
-**2. Pesan yang mengatasnamakan bank**
-
-Korban diberi tahu bahwa rekening akan diblokir atau terdapat transaksi mencurigakan. Pelaku meminta korban mengeklik tautan dan memasukkan informasi rekening atau data login.
-
-**3. Undangan digital**
-
-Korban menerima undangan pernikahan atau acara lain dalam bentuk tautan atau file aplikasi. Jika tidak berhati-hati, korban dapat diarahkan ke situs palsu atau diminta memasang aplikasi yang berisiko membahayakan keamanan perangkat.
-
-Ingat, pesan semacam ini belum tentu penipuan. Namun, jika terdapat permintaan yang tidak wajar atau tautan yang mencurigakan, jangan langsung mempercayainya.
-
-## Tanda-Tanda Pesan Phishing
-
-Beberapa tanda yang perlu diperhatikan antara lain:
-
-- Pengirim menggunakan alamat email atau nomor yang tidak dikenal.
-- Pesan mendesak penerima untuk segera bertindak, misalnya dengan ancaman pemblokiran akun.
-- Tautan memiliki domain yang berbeda dari situs resmi.
-- Pesan meminta kata sandi, kode OTP, PIN, atau data sensitif lainnya.
-- Terdapat kesalahan penulisan, informasi yang tidak masuk akal, atau format pesan yang tidak biasa.
-- Lampiran meminta penerima mengunduh atau memasang aplikasi yang tidak jelas sumbernya.
-
-Satu tanda saja tidak selalu membuktikan bahwa sebuah pesan adalah phishing. Periksa konteks dan verifikasi informasi sebelum mengambil tindakan.
-
-## Apa yang Harus Dilakukan Sebelum Mengeklik Tautan?
-
-Sebelum membuka tautan dalam pesan, lakukan langkah berikut:
-
-1. **Berhenti sejenak.** Jangan terburu-buru karena pesan mendesak belum tentu benar.
-2. **Periksa identitas pengirim.** Jangan hanya mengandalkan nama atau foto profil.
-3. **Periksa alamat tautan.** Perhatikan ejaan domain dan alamat situs yang dituju. Hindari membuka tautan yang tidak jelas.
-4. **Verifikasi melalui kanal resmi.** Buka aplikasi resmi atau ketik alamat situs resmi secara mandiri, bukan melalui tautan dalam pesan.
-5. **Jangan masukkan informasi sensitif.** Hindari memberikan kata sandi, PIN, dan kode OTP melalui tautan atau kepada pihak yang menghubungi secara tiba-tiba.
-
-Jika telanjur mengeklik tautan, segera tutup halaman tersebut dan jangan mengisi informasi apa pun. Jika sudah memberikan data atau memasang aplikasi mencurigakan, amankan akun dan perangkat sesegera mungkin.
-
-## Kesimpulan
-
-Phishing dapat menyasar siapa saja, terutama ketika seseorang sedang terburu-buru atau lengah. Oleh karena itu, biasakan untuk memeriksa pengirim, memastikan alamat situs, dan melakukan verifikasi melalui kanal resmi.
-
-**Jangan asal klik. Kenali modusnya, lindungi datanya, dan sebarkan kewaspadaannya!**
-
-*KenaliKlik — Jangan Asal Klik, Lindungi Identitas Digitalmu.*`},
-{t:"OTP Bukan untuk Dibagikan: Lindungi Akun Digitalmu",s:"Kode OTP adalah rahasiamu. Pahami kenapa dan apa yang harus dilakukan jika telanjur dibagikan.",b:`
-Pernah menerima kode OTP padahal kamu tidak sedang masuk ke akun atau melakukan transaksi? Jangan abaikan situasi tersebut! Kode OTP yang tiba-tiba masuk bisa menjadi tanda bahwa seseorang sedang mencoba mengakses akunmu.
-
-Kode OTP merupakan salah satu lapisan keamanan akun digital. Namun, perlindungan ini dapat menjadi tidak efektif jika kodenya diberikan kepada orang lain.
-
-## Apa Itu Kode OTP?
-
-OTP merupakan singkatan dari *One-Time Password*, yaitu kode verifikasi sekali pakai yang digunakan untuk mengonfirmasi identitas pengguna atau menyetujui tindakan tertentu.
-
-Kode ini biasanya dikirim melalui SMS, email, atau aplikasi autentikasi. OTP dapat digunakan ketika pengguna masuk ke akun, mengatur ulang kata sandi, atau melakukan transaksi tertentu.
-
-Karena dapat digunakan untuk menyelesaikan proses verifikasi, kode OTP harus dijaga kerahasiaannya.
-
-## Mengapa Kode OTP Tidak Boleh Diberikan kepada Orang Lain?
-
-Pelaku penipuan dapat berpura-pura menjadi petugas bank, layanan pelanggan, kurir, atau pihak lain yang dipercaya korban. Mereka kemudian meminta kode OTP dengan alasan verifikasi akun, pembatalan transaksi, atau penyelesaian masalah.
-
-Padahal, kode tersebut bisa digunakan untuk menyelesaikan proses masuk atau tindakan yang sedang dicoba pelaku.
-
-Perlu diingat, **jangan pernah memberikan kode OTP kepada orang lain**, termasuk seseorang yang mengaku sebagai petugas resmi. Jangan pula membagikannya melalui chat, telepon, atau media sosial.
-
-## Contoh Skenario Penipuan OTP
-
-Bayangkan kamu menerima telepon dari seseorang yang mengaku sebagai petugas layanan pelanggan. Orang tersebut mengatakan bahwa akunmu mengalami masalah dan perlu diverifikasi.
-
-Tidak lama kemudian, sebuah kode OTP masuk ke ponselmu. Pelaku meminta kode tersebut dengan alasan untuk menyelesaikan proses verifikasi.
-
-Jika kamu memberikan kode itu, pelaku mungkin dapat menyelesaikan proses autentikasi yang sedang dilakukannya. Dampaknya bergantung pada layanan, pengaturan keamanan, dan tindakan yang berhasil dilakukan pelaku.
-
-**Apa yang sebaiknya dilakukan?**
-
-- Jangan memberikan kode OTP.
-- Akhiri komunikasi jika permintaannya mencurigakan.
-- Hubungi layanan terkait melalui aplikasi, nomor telepon, atau situs resmi.
-- Periksa aktivitas akun jika kamu tidak merasa melakukan permintaan verifikasi.
-
-## Bagaimana Jika Kode OTP Telanjur Dibagikan?
-
-Jangan panik, tetapi segera lakukan tindakan untuk mengurangi risiko.
-
-**1. Amankan akun**
-
-Jika masih dapat mengakses akun, ganti kata sandi melalui aplikasi atau situs resmi. Jika kata sandi yang sama digunakan di layanan lain, ganti juga kata sandi pada layanan tersebut.
-
-**2. Periksa aktivitas akun**
-
-Periksa riwayat login, transaksi, perubahan informasi pemulihan, dan aktivitas lain yang tidak kamu kenali.
-
-**3. Hubungi penyedia layanan**
-
-Gunakan kanal resmi bank, dompet digital, media sosial, atau layanan terkait untuk melaporkan kejadian tersebut dan meminta bantuan pengamanan akun.
-
-**4. Amankan transaksi keuangan**
-
-Jika berkaitan dengan rekening atau dompet digital, segera hubungi penyedia layanan. Jika ada transaksi tidak sah, laporkan secepat mungkin dan ikuti prosedur penanganannya.
-
-**5. Amankan perangkat**
-
-Jika kamu juga memasang aplikasi dari sumber tidak jelas, hentikan penggunaannya dan lakukan pemeriksaan keamanan perangkat. Hindari memasukkan informasi sensitif melalui aplikasi yang mencurigakan.
-
-## Tips Menjaga Keamanan Kode OTP
-
-Agar akun tetap aman, biasakan melakukan hal-hal berikut:
-
-- Jangan membagikan OTP kepada siapa pun.
-- Jangan menyetujui permintaan login atau verifikasi yang tidak kamu lakukan.
-- Gunakan kata sandi yang kuat dan berbeda untuk setiap akun.
-- Aktifkan fitur keamanan tambahan yang tersedia.
-- Waspadai telepon atau pesan yang meminta kode dengan alasan mendesak.
-
-## Kesimpulan
-
-Kode OTP bukan sekadar deretan angka. Kode tersebut dapat menjadi bagian penting dari perlindungan akun digitalmu. Menjaganya tetap rahasia merupakan langkah sederhana untuk mengurangi risiko pengambilalihan akun dan penyalahgunaan informasi pribadi.
-
-**Ingat, kode OTP adalah rahasiamu. Jangan bagikan, meskipun yang meminta mengaku sebagai pihak tepercaya!**
-
-*KenaliKlik — Jangan Asal Klik, Lindungi Identitas Digitalmu.*`},
-{t:"Dapat Pesan Mencurigakan? Lakukan 5 Langkah Ini",s:"Lima langkah sederhana dan checklist cepat sebelum kamu memercayai sebuah pesan.",b:`
-Pesan singkat yang menawarkan hadiah, pemberitahuan paket, hingga peringatan masalah rekening sering muncul di ponsel kita. Sebagian pesan memang berasal dari pihak yang sah, tetapi ada juga yang digunakan untuk melakukan penipuan digital.
-
-Jika menerima pesan yang terasa janggal, jangan langsung mengeklik tautan atau mengikuti instruksi di dalamnya. Ada lima langkah sederhana yang bisa kamu lakukan untuk melindungi diri.
-
-## 1. Jangan Langsung Mengeklik Tautan
-
-Tautan dalam pesan mencurigakan dapat mengarah ke situs palsu, halaman login tiruan, atau unduhan berbahaya.
-
-Misalnya, kamu menerima pesan yang menyatakan bahwa paket tertahan dan kamu harus membayar biaya tambahan melalui sebuah tautan. Jangan terburu-buru membuka tautan tersebut.
-
-Periksa informasi pengiriman melalui aplikasi atau situs resmi penyedia jasa kurir. Jika kamu tidak yakin dengan sumber pesan, lebih baik jangan berinteraksi dengan tautannya.
-
-## 2. Periksa Alamat Pengirim dan Domain
-
-Perhatikan siapa yang mengirimkan pesan. Nama profil atau logo yang terlihat resmi tidak menjamin bahwa pengirim benar-benar berasal dari organisasi tersebut.
-
-Periksa juga alamat email, nomor pengirim, dan domain situs yang dicantumkan. Pelaku dapat menggunakan alamat yang menyerupai situs asli dengan menambahkan karakter, mengubah ejaan, atau memakai domain berbeda.
-
-Namun, pengirim yang terlihat familiar pun tetap perlu diperiksa karena akun atau nomor telepon dapat disalahgunakan.
-
-## 3. Konfirmasi Melalui Kanal Resmi
-
-Jika pesan mengatasnamakan bank, kurir, marketplace, atau instansi tertentu, lakukan verifikasi secara mandiri.
-
-Caranya:
-
-- Buka aplikasi resmi yang sudah terpasang di perangkat.
-- Ketik alamat situs resmi secara langsung pada browser.
-- Hubungi layanan pelanggan melalui informasi kontak resmi.
-- Periksa pengumuman atau notifikasi melalui akun resmi penyedia layanan.
-
-Jangan menggunakan nomor telepon atau tautan yang diberikan dalam pesan mencurigakan sebagai satu-satunya sumber verifikasi.
-
-## 4. Jangan Membagikan Kata Sandi atau OTP
-
-Pesan mencurigakan terkadang meminta penerima mengisi kata sandi, PIN, kode OTP, atau informasi pribadi dengan alasan verifikasi.
-
-Jangan memberikan informasi tersebut kepada orang yang menghubungimu secara tiba-tiba. Jangan pula menyetujui permintaan login atau autentikasi yang tidak kamu lakukan.
-
-Jika sudah terlanjur memberikan informasi sensitif, segera ganti kata sandi melalui kanal resmi, periksa aktivitas akun, dan hubungi penyedia layanan jika diperlukan.
-
-## 5. Laporkan dan Blokir Pesan yang Terindikasi Penipuan
-
-Jika pesan terindikasi sebagai penipuan, simpan bukti yang diperlukan, seperti tangkapan layar, nomor pengirim, atau alamat situs. Jangan menyebarkan tautan berbahaya kepada orang lain.
-
-Selanjutnya:
-
-- Gunakan fitur **Laporkan sebagai spam** atau **Laporkan** pada aplikasi yang digunakan.
-- Blokir pengirim jika diperlukan.
-- Laporkan kepada penyedia layanan atau platform terkait.
-- Jika ada kerugian finansial atau penyalahgunaan akun, hubungi bank atau penyedia layanan secepatnya dan gunakan kanal pelaporan resmi yang tersedia.
-
-Jangan lupa untuk memberi tahu keluarga atau teman jika modus tersebut berpotensi menyasar mereka juga.
-
-## Checklist Sebelum Memercayai Pesan
-
-Sebelum mengikuti instruksi dalam sebuah pesan, tanyakan hal-hal berikut kepada dirimu sendiri:
-
-- Apakah saya mengenal dan dapat memverifikasi pengirimnya?
-- Apakah isi pesan membuat saya panik atau terburu-buru?
-- Apakah tautannya benar-benar mengarah ke situs resmi?
-- Apakah pesan meminta kata sandi, PIN, atau kode OTP?
-- Apakah informasi tersebut dapat saya konfirmasi melalui aplikasi resmi?
-
-Jika masih ragu, jangan lanjutkan prosesnya sebelum melakukan verifikasi.
-
-## Kesimpulan
-
-Menghadapi pesan mencurigakan tidak harus membuat kita panik. Dengan berhenti sejenak, memeriksa pengirim, melakukan verifikasi, menjaga informasi sensitif, serta melaporkan pesan yang terindikasi penipuan, kita dapat mengurangi risiko menjadi korban kejahatan siber.
-
-**Berhenti sebelum klik. Periksa sebelum percaya. Laporkan jika mencurigakan.**
-
-*KenaliKlik — Jangan Asal Klik, Lindungi Identitas Digitalmu.*`}
+const articles = [
+{
+ id:"a1", category:"Phishing", date:"Artikel edukasi", read:"7 menit baca",
+ title:"Phishing: Ketika Penipu Menyamar Menjadi Pihak Tepercaya",
+ summary:"Kenali cara kerja phishing dan modus yang menyamar sebagai kurir, bank, atau pengirim undangan digital.",
+ image:"https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1000&q=85",
+ alt:"Ilustrasi keamanan siber dengan cahaya digital",
+ body:`
+<p>Pernah menerima pesan yang mengaku berasal dari kurir paket, bank, atau seseorang yang mengirimkan undangan digital? Hati-hati! Bisa jadi pesan tersebut merupakan upaya <em>phishing</em>, yaitu salah satu bentuk kejahatan siber yang bertujuan mencuri informasi pribadi.</p>
+<p>Melalui kampanye <strong>KenaliKlik</strong>, mari kenali cara kerja phishing agar kita tidak mudah terjebak dalam penipuan digital.</p>
+<h2>Apa Itu Phishing?</h2>
+<p>Phishing adalah tindakan penipuan yang dilakukan dengan menyamar sebagai pihak tepercaya untuk mengelabui korban agar memberikan informasi sensitif. Informasi tersebut dapat berupa nama pengguna, kata sandi, kode OTP, data perbankan, atau informasi pribadi lainnya.</p>
+<p>Pelaku biasanya memanfaatkan pesan singkat, email, media sosial, atau situs web palsu agar korban percaya bahwa pesan yang diterima benar-benar berasal dari pihak resmi.</p>
+<h2>Bagaimana Cara Kerja Phishing?</h2>
+<ol><li><strong>Menghubungi korban.</strong> Pelaku mengirimkan pesan yang tampak meyakinkan dan mengatasnamakan pihak tertentu.</li><li><strong>Menciptakan rasa panik atau penasaran.</strong> Korban diberi tahu bahwa paket bermasalah, rekening akan diblokir, atau ada undangan penting.</li><li><strong>Mengarahkan korban ke tautan tertentu.</strong> Tautan dapat menuju situs palsu atau mengunduh file berbahaya.</li><li><strong>Mencuri informasi.</strong> Data yang dimasukkan korban dapat dimanfaatkan untuk mengambil alih akun atau melakukan penipuan.</li></ol>
+<h2>Contoh Modus Phishing</h2>
+<p><strong>Pesan dari kurir paket.</strong> Korban diberi tahu bahwa paket tidak dapat dikirim karena alamat tidak lengkap. Pesan menyertakan tautan untuk memperbarui informasi atau mengunduh dokumen.</p>
+<p><strong>Pesan yang mengatasnamakan bank.</strong> Korban diberi tahu bahwa rekening akan diblokir atau ada transaksi mencurigakan, lalu diminta memasukkan data melalui tautan.</p>
+<p><strong>Undangan digital.</strong> Korban menerima undangan dalam bentuk tautan atau file aplikasi. Pelaku dapat mengarahkan korban ke situs palsu atau meminta pemasangan aplikasi berisiko.</p>
+<div class="article-callout">Pesan tersebut belum tentu penipuan. Namun, jika ada permintaan tidak wajar atau tautan mencurigakan, jangan langsung mempercayainya.</div>
+<h2>Tanda-Tanda Pesan Mencurigakan</h2>
+<ul><li>Alamat email atau nomor pengirim tidak dikenal.</li><li>Pesan mendesak penerima untuk segera bertindak atau mengancam pemblokiran akun.</li><li>Domain tautan berbeda dari situs resmi atau memiliki ejaan yang janggal.</li><li>Pesan meminta kata sandi, PIN, kode OTP, atau data sensitif.</li><li>Ada lampiran yang meminta penerima memasang aplikasi dari sumber tidak jelas.</li></ul>
+<p>Satu tanda saja tidak selalu membuktikan bahwa pesan adalah phishing. Periksa konteks dan verifikasi informasi sebelum mengambil tindakan.</p>
+<h2>Sebelum Mengeklik Tautan</h2>
+<ol><li><strong>Berhenti sejenak.</strong> Jangan terburu-buru karena pesan mendesak belum tentu benar.</li><li><strong>Periksa identitas pengirim.</strong> Jangan hanya mengandalkan nama atau foto profil.</li><li><strong>Periksa alamat tautan.</strong> Perhatikan ejaan domain dan alamat situs yang dituju.</li><li><strong>Verifikasi melalui kanal resmi.</strong> Buka aplikasi resmi atau ketik alamat situs secara mandiri.</li><li><strong>Jangan masukkan informasi sensitif.</strong> Jangan berikan kata sandi, PIN, dan OTP kepada pihak yang menghubungi secara tiba-tiba.</li></ol>
+<p>Jika telanjur mengeklik tautan, tutup halaman dan jangan mengisi informasi apa pun. Jika sudah memberikan data atau memasang aplikasi mencurigakan, segera amankan akun dan perangkat.</p>
+<h2>Kesimpulan</h2><p>Phishing dapat menyasar siapa saja, terutama ketika seseorang terburu-buru atau lengah. Biasakan memeriksa pengirim, memastikan alamat situs, dan melakukan verifikasi melalui kanal resmi.</p>
+<p><strong>Jangan asal klik. Kenali modusnya, lindungi datanya, dan sebarkan kewaspadaannya!</strong></p>`
+},
+{
+ id:"a2", category:"Keamanan Akun", date:"Artikel edukasi", read:"5 menit baca",
+ title:"OTP Bukan untuk Dibagikan: Lindungi Akun Digitalmu",
+ summary:"Kode OTP adalah rahasiamu. Pahami mengapa kode ini harus dijaga dan apa yang dilakukan jika telanjur dibagikan.",
+ image:"https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1000&q=85",
+ alt:"Ponsel dan ilustrasi keamanan digital",
+ body:`
+<p>Pernah menerima kode OTP padahal kamu tidak sedang masuk ke akun atau melakukan transaksi? Jangan abaikan situasi tersebut. Kode OTP yang tiba-tiba masuk bisa menjadi tanda bahwa seseorang sedang mencoba mengakses akunmu.</p>
+<h2>Apa Itu Kode OTP?</h2>
+<p>OTP merupakan singkatan dari <em>One-Time Password</em>, yaitu kode verifikasi sekali pakai untuk mengonfirmasi identitas pengguna atau menyetujui tindakan tertentu. Kode ini biasanya dikirim melalui SMS, email, atau aplikasi autentikasi.</p>
+<p>OTP dapat digunakan ketika pengguna masuk ke akun, mengatur ulang kata sandi, atau melakukan transaksi tertentu. Karena itu, kode OTP harus dijaga kerahasiaannya.</p>
+<h2>Mengapa OTP Tidak Boleh Dibagikan?</h2>
+<p>Pelaku penipuan dapat berpura-pura menjadi petugas bank, layanan pelanggan, kurir, atau pihak lain yang dipercaya. Mereka meminta kode OTP dengan alasan verifikasi akun, pembatalan transaksi, atau penyelesaian masalah.</p>
+<p>Kode tersebut bisa digunakan untuk menyelesaikan proses masuk atau tindakan yang sedang dicoba pelaku. <strong>Jangan pernah memberikan kode OTP kepada orang lain</strong>, termasuk seseorang yang mengaku sebagai petugas resmi.</p>
+<h2>Contoh Skenario Penipuan OTP</h2>
+<p>Bayangkan kamu menerima telepon dari seseorang yang mengaku sebagai petugas layanan pelanggan. Ia mengatakan akunmu mengalami masalah. Tidak lama kemudian, sebuah kode OTP masuk ke ponselmu dan pelaku meminta kode itu untuk menyelesaikan verifikasi.</p>
+<p>Jika kamu memberikan kode tersebut, pelaku mungkin dapat menyelesaikan proses autentikasi yang sedang dilakukannya. Dampaknya bergantung pada layanan dan tindakan yang berhasil dilakukan pelaku.</p>
+<div class="article-callout">Jika kamu tidak melakukan permintaan login atau transaksi, jangan berikan OTP dan jangan menyetujui permintaan verifikasi tersebut.</div>
+<h2>Jika OTP Telanjur Dibagikan</h2>
+<ol><li><strong>Amankan akun.</strong> Jika masih bisa masuk, ganti kata sandi melalui aplikasi atau situs resmi.</li><li><strong>Periksa aktivitas akun.</strong> Periksa riwayat login, transaksi, dan perubahan informasi pemulihan.</li><li><strong>Hubungi penyedia layanan.</strong> Gunakan kanal resmi untuk melaporkan kejadian dan meminta bantuan.</li><li><strong>Amankan transaksi keuangan.</strong> Jika terkait rekening atau dompet digital, hubungi penyedia layanan secepatnya.</li><li><strong>Amankan perangkat.</strong> Jika memasang aplikasi dari sumber tidak jelas, hentikan penggunaannya dan periksa keamanan perangkat.</li></ol>
+<h2>Tips Menjaga OTP</h2>
+<ul><li>Jangan membagikan OTP kepada siapa pun.</li><li>Jangan menyetujui permintaan login atau verifikasi yang tidak kamu lakukan.</li><li>Gunakan kata sandi kuat dan berbeda untuk setiap akun.</li><li>Aktifkan fitur keamanan tambahan yang tersedia.</li><li>Waspadai telepon atau pesan yang meminta kode dengan alasan mendesak.</li></ul>
+<h2>Kesimpulan</h2><p>Kode OTP merupakan bagian penting dari perlindungan akun digital. Menjaganya tetap rahasia adalah langkah sederhana untuk mengurangi risiko pengambilalihan akun dan penyalahgunaan informasi pribadi.</p><p><strong>Ingat, kode OTP adalah rahasiamu. Jangan bagikan, meskipun yang meminta mengaku sebagai pihak tepercaya!</strong></p>`
+},
+{
+ id:"a3", category:"Langkah Aman", date:"Panduan praktis", read:"4 menit baca",
+ title:"Dapat Pesan Mencurigakan? Lakukan 5 Langkah Ini",
+ summary:"Lima langkah sederhana dan checklist cepat sebelum kamu memercayai sebuah pesan.",
+ image:"https://images.unsplash.com/photo-151632131 широк?auto=format&fit=crop&w=1000&q=85".replace(" широк",""),
+ alt:"Seseorang menggunakan ponsel untuk memeriksa pesan",
+ body:`
+<p>Pesan singkat yang menawarkan hadiah, pemberitahuan paket, hingga peringatan masalah rekening sering muncul di ponsel kita. Sebagian pesan memang berasal dari pihak yang sah, tetapi ada juga yang digunakan untuk melakukan penipuan digital.</p>
+<p>Jika menerima pesan yang terasa janggal, jangan langsung mengeklik tautan atau mengikuti instruksi di dalamnya. Berikut lima langkah untuk melindungi diri.</p>
+<h2>1. Jangan Langsung Mengeklik Tautan</h2><p>Tautan dalam pesan mencurigakan dapat mengarah ke situs palsu, halaman login tiruan, atau unduhan berbahaya. Jika ada pesan tentang paket tertahan, periksa informasi pengiriman melalui aplikasi atau situs resmi kurir.</p>
+<h2>2. Periksa Alamat Pengirim dan Domain</h2><p>Nama profil atau logo yang terlihat resmi tidak menjamin pengirim benar-benar berasal dari organisasi tersebut. Periksa alamat email, nomor pengirim, dan domain situs. Pelaku dapat menggunakan alamat yang menyerupai situs asli dengan mengubah ejaan atau menambahkan karakter.</p>
+<h2>3. Konfirmasi Melalui Kanal Resmi</h2><p>Jika pesan mengatasnamakan bank, kurir, marketplace, atau instansi, lakukan verifikasi secara mandiri.</p><ul><li>Buka aplikasi resmi yang sudah terpasang.</li><li>Ketik alamat situs resmi langsung di browser.</li><li>Hubungi layanan pelanggan melalui informasi kontak resmi.</li><li>Periksa notifikasi di aplikasi atau akun resmi penyedia layanan.</li></ul><p>Jangan menjadikan nomor telepon atau tautan di pesan mencurigakan sebagai satu-satunya sumber verifikasi.</p>
+<h2>4. Jangan Membagikan Kata Sandi atau OTP</h2><p>Jangan memberikan kata sandi, PIN, kode OTP, atau informasi pribadi kepada orang yang menghubungimu secara tiba-tiba. Jangan menyetujui permintaan login atau autentikasi yang tidak kamu lakukan.</p><p>Jika telanjur memberikan informasi sensitif, segera ganti kata sandi melalui kanal resmi, periksa aktivitas akun, dan hubungi penyedia layanan jika diperlukan.</p>
+<h2>5. Laporkan dan Blokir Pesan</h2><p>Jika pesan terindikasi penipuan, simpan bukti yang diperlukan seperti tangkapan layar, nomor pengirim, atau alamat situs. Selanjutnya, gunakan fitur laporkan sebagai spam, blokir pengirim jika perlu, dan laporkan ke penyedia layanan atau platform terkait.</p><p>Jika terjadi kerugian finansial atau penyalahgunaan akun, hubungi bank atau penyedia layanan secepatnya dan gunakan kanal pelaporan resmi.</p>
+<h2>Checklist Sebelum Memercayai Pesan</h2><ul><li>Apakah saya dapat memverifikasi identitas pengirim?</li><li>Apakah isi pesan membuat saya panik atau terburu-buru?</li><li>Apakah tautannya benar-benar mengarah ke situs resmi?</li><li>Apakah pesan meminta kata sandi, PIN, atau OTP?</li><li>Bisakah informasi ini dikonfirmasi melalui aplikasi resmi?</li></ul>
+<div class="article-callout">Jika masih ragu, jangan lanjutkan prosesnya sebelum melakukan verifikasi.</div>
+<h2>Kesimpulan</h2><p>Menghadapi pesan mencurigakan tidak harus membuat kita panik. Berhenti sejenak, periksa pengirim, verifikasi informasi, jaga data sensitif, lalu laporkan pesan yang terindikasi penipuan.</p><p><strong>Berhenti sebelum klik. Periksa sebelum percaya. Laporkan jika mencurigakan.</strong></p>`
+}
 ];
-function inl(t){return t.replace(/\*\*(.+?)\*\*/g,"<b>$1</b>").replace(/\*(.+?)\*/g,"<i>$1</i>")}
-function md(s){var o=[],ls=null;s.trim().split("\n").forEach(function(l){
-var m=l.match(/^\d+\. (.*)/),b=l.match(/^- (.*)/),t=m?"ol":b?"ul":null;
-if(ls&&ls!==t){o.push("</"+ls+">");ls=null}
-if(t){if(!ls){o.push("<"+t+">");ls=t}o.push("<li>"+inl((m||b)[1])+"</li>")}
-else if(l.indexOf("## ")===0)o.push("<h2>"+inl(l.slice(3))+"</h2>");
-else if(l.trim())o.push("<p>"+inl(l)+"</p>")});
-if(ls)o.push("</"+ls+">");return o.join("")}
+
+function card(a){
+ return `<article class="article-card"><div class="article-image"><img src="${a.image}" alt="${a.alt}" loading="lazy" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#d8e9e5,#a9c8d0)'"><span class="category">${a.category}</span></div><div class="article-content"><div class="article-meta">${a.date} · ${a.read}</div><h3>${a.title}</h3><p>${a.summary}</p><a class="read-link" href="#${a.id}">Baca artikel <span aria-hidden="true">→</span></a></div></article>`;
+}
+function home(){
+ return `<section class="hero-wrap"><div class="container hero"><div><div class="eyebrow">Social campaign · keamanan digital</div><h1>Jangan asal <em>klik.</em><br>Jaga jejak digitalmu.</h1><p>KenaliKlik mengajak kita mengenali phishing, menjaga kode OTP, dan bertindak tepat saat menerima pesan mencurigakan. Satu langkah kecil bisa membantu melindungi data pribadi.</p><div class="actions"><a class="btn btn-primary" href="#artikel">Jelajahi artikel <span aria-hidden="true">→</span></a><a class="btn btn-ghost" href="#kuis">Coba kuis mini</a></div></div><div class="hero-visual"><div class="hero-photo"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=90" alt="Ilustrasi jaringan keamanan siber"><div class="photo-shade"></div><div class="photo-label"><small>Kenali · Periksa · Lindungi</small><h2>Keamanan digital dimulai dari kebiasaan kita.</h2></div></div><div class="float-note">Berhenti sebelum klik.<span>Luangkan waktu untuk memeriksa pesan.</span></div></div></div></section>
+ <div class="container quick-rules"><div class="rule"><strong>01 / Berhenti</strong><p>Jangan terburu-buru mengikuti pesan yang mendesak.</p></div><div class="rule"><strong>02 / Periksa</strong><p>Verifikasi pengirim dan alamat situs melalui kanal resmi.</p></div><div class="rule"><strong>03 / Laporkan</strong><p>Laporkan pesan yang terindikasi penipuan.</p></div></div>
+ <section class="section container" id="artikel"><div class="section-head"><div><div class="kicker">Bacaan pilihan</div><h2 class="section-title">Semua Artikel</h2></div><p>Informasi praktis agar kamu lebih waspada saat menerima pesan, tautan, dan permintaan data digital.</p></div><div class="article-grid">${articles.map(card).join("")}</div></section>
+ <section class="section container" style="padding-top:0"><div class="campaign-band"><div><div class="kicker">Uji kewaspadaanmu</div><h2>Phishing atau bukan?</h2><p>Coba kuis mini KenaliKlik dan lihat apakah kamu sudah tahu langkah yang aman saat menerima pesan mencurigakan.</p></div><a class="btn btn-teal" href="#kuis">Mulai kuis <span aria-hidden="true">→</span></a></div></section>`;
+}
+function articlePage(a){
+ const idx=articles.findIndex(x=>x.id===a.id);
+ const prev=idx>0?`<a href="#${articles[idx-1].id}">← Artikel sebelumnya</a>`:"<a href=\"#artikel\">← Semua artikel</a>";
+ const next=idx<articles.length-1?`<a href="#${articles[idx+1].id}">Artikel berikutnya →</a>`:"<a href=\"#kuis\">Coba kuis mini →</a>";
+ return `<section class="page container"><article class="article-body"><div class="article-meta">${a.category} · ${a.read}</div><h1>${a.title}</h1><p style="color:var(--muted);font-size:1.08rem">${a.summary}</p>${a.body}<div class="article-callout">KenaliKlik — Jangan Asal Klik, Lindungi Identitas Digitalmu.</div></article><div class="article-pager">${prev}${next}</div></section>`;
+}
+function quiz(){
+ return `<section class="page container"><div class="page-intro"><div class="kicker">Kuis interaktif</div><h1>Phishing atau bukan?</h1><p>Baca skenario berikut dan pilih tindakan yang paling aman. Kuis ini untuk edukasi, bukan alat untuk memastikan suatu pesan benar-benar penipuan.</p></div><div class="quiz-box"><div class="kicker">Skenario 01 / 01</div><h2 style="color:var(--navy);margin:5px 0 0">Pesan paket tertahan</h2><div class="quiz-scenario"><div class="fake-message"><small>SMS · Pengirim tidak dikenal</small>“Paket Anda tertahan. Segera perbarui alamat melalui tautan ini agar paket tidak dikembalikan.”</div></div><p>Apa tindakan paling aman?</p><div class="quiz-options"><button class="quiz-option" data-correct="false"><b>A.</b><span>Langsung membuka tautan karena takut paket dikembalikan.</span></button><button class="quiz-option" data-correct="true"><b>B.</b><span>Mengecek status paket lewat aplikasi atau situs resmi kurir secara mandiri.</span></button><button class="quiz-option" data-correct="false"><b>C.</b><span>Membalas pesan dan mengirimkan data pribadi untuk verifikasi.</span></button></div><div class="quiz-feedback" id="quizFeedback" role="status" aria-live="polite"></div><button class="btn btn-teal" id="quizReset" style="margin-top:15px" type="button">Ulangi kuis</button></div></section>`;
+}
+function references(){
+ return `<section class="page container"><div class="page-intro"><div class="kicker">Baca dan periksa</div><h1>Referensi Tepercaya</h1><p>Gunakan sumber resmi untuk mempelajari keamanan digital, mengenali penipuan, dan mencari panduan pelaporan. Tautan di bawah mengarah ke situs organisasi terkait.</p></div><div class="reference-list">
+ <article class="reference-card"><h3>Otoritas Jasa Keuangan (OJK)</h3><p>Informasi dan edukasi konsumen sektor jasa keuangan, termasuk kewaspadaan terhadap penipuan keuangan.</p><a href="https://www.ojk.go.id/" target="_blank" rel="noopener noreferrer">Kunjungi ojk.go.id ↗</a></article>
+ <article class="reference-card"><h3>Indonesia Anti-Scam Centre (IASC)</h3><p>Kanal resmi untuk informasi dan pelaporan terkait penipuan transaksi keuangan.</p><a href="https://iasc.ojk.go.id/" target="_blank" rel="noopener noreferrer">Kunjungi iasc.ojk.go.id ↗</a></article>
+ <article class="reference-card"><h3>Badan Siber dan Sandi Negara (BSSN)</h3><p>Informasi, edukasi, dan publikasi terkait keamanan siber di Indonesia.</p><a href="https://www.bssn.go.id/" target="_blank" rel="noopener noreferrer">Kunjungi bssn.go.id ↗</a></article>
+ <article class="reference-card"><h3>Komdigi</h3><p>Kementerian Komunikasi dan Digital Republik Indonesia, termasuk informasi kebijakan dan edukasi ruang digital.</p><a href="https://www.komdigi.go.id/" target="_blank" rel="noopener noreferrer">Kunjungi komdigi.go.id ↗</a></article>
+ <article class="reference-card"><h3>Aduan Konten</h3><p>Kanal pemerintah untuk melaporkan konten internet yang diduga melanggar ketentuan.</p><a href="https://aduankonten.id/" target="_blank" rel="noopener noreferrer">Kunjungi aduankonten.id ↗</a></article>
+ <article class="reference-card"><h3>Catatan penggunaan</h3><p>Artikel KenaliKlik merupakan materi edukasi kampanye. Untuk kasus nyata, ikuti instruksi terbaru dari penyedia layanan dan kanal resmi yang berwenang.</p></article>
+ </div></section>`;
+}
+function about(){
+ return `<section class="page container"><div class="page-intro"><div class="kicker">Tentang kampanye</div><h1>Lebih sadar, lebih aman.</h1><p>KenaliKlik dibuat untuk membantu pengguna internet mengenali tanda-tanda phishing dan membangun kebiasaan yang lebih aman saat beraktivitas digital.</p></div><div class="about-grid"><aside class="profile-card"><div class="profile-avatar" aria-hidden="true">VP</div><h2>Veronica Febriani Putri</h2><p>Mahasiswa Statistika<br>Institut Teknologi Sepuluh Nopember (ITS)</p><p style="margin-top:18px;font-size:.88rem">Penyusun kampanye edukasi KenaliKlik</p></aside><section class="about-copy"><div class="kicker">Latar belakang</div><h2>Mengapa KenaliKlik?</h2><p>Aktivitas digital memudahkan komunikasi dan transaksi, tetapi pesan palsu dan tautan berbahaya juga dapat dimanfaatkan untuk menipu pengguna. KenaliKlik hadir sebagai kampanye sosial sederhana untuk membantu pembaca berhenti sejenak, memeriksa informasi, dan mengambil tindakan yang lebih aman.</p><h2>Tujuan kampanye</h2><ul><li>Mengenalkan pengertian dan modus phishing.</li><li>Mendorong kebiasaan menjaga kata sandi, PIN, dan kode OTP.</li><li>Membagikan langkah praktis saat menerima pesan mencurigakan.</li><li>Mengarahkan pembaca ke sumber informasi dan pelaporan resmi.</li></ul><h2>Pesan utama</h2><p><strong>Jangan asal klik. Periksa sebelum percaya. Lindungi identitas digitalmu.</strong></p><p style="font-size:.88rem;color:var(--muted)">Proyek edukasi untuk tugas Aplikasi Teknologi dan Transformasi Digital (APTEKTRANSIDI).</p></section></div></section>`;
+}
 function render(){
-var h=(location.hash||"#").slice(1),i=["a1","a2","a3"].indexOf(h),app=document.getElementById("app");
-document.querySelectorAll("nav a[data-p]").forEach(function(a){a.classList.toggle("on",a.dataset.p===h)});
-window.scrollTo(0,0);
-if(i<0){
-var c=A.map(function(a,k){return '<a class="card" href="#a'+(k+1)+'"><b>ARTIKEL '+(k+1)+'</b><h3>'+a.t+'</h3><p>'+a.s+'</p></a>'}).join("");
-app.innerHTML='<section class="hero"><span class="tag">SOCIAL CAMPAIGN · KEJAHATAN SIBER</span><h1>Jangan Asal <span>Klik.</span></h1><p>KenaliKlik mengajak kita mengenali phishing, menjaga kode OTP, dan bertindak tepat saat menerima pesan mencurigakan.</p><a class="btn" href="#a1">Mulai membaca</a></section><div class="rule"><div>Berhenti<small>sebelum klik</small></div><div>Periksa<small>sebelum percaya</small></div><div>Laporkan<small>jika mencurigakan</small></div></div><h2 class="sec">Artikel Kampanye</h2><div class="cards">'+c+'</div>';
-document.title="KenaliKlik — Jangan Asal Klik, Lindungi Identitas Digitalmu";return}
-var a=A[i],p=i>0?'<a href="#a'+i+'">← Sebelumnya</a>':"<span></span>",n=i<2?'<a href="#a'+(i+2)+'">Berikutnya →</a>':'<a href="#">Beranda →</a>';
-app.innerHTML='<article><span class="no">ARTIKEL '+(i+1)+' DARI 3</span><h1>'+a.t+'</h1>'+md(a.b)+'</article><div class="pn">'+p+n+'</div>';
-document.title=a.t+" · KenaliKlik"}
-window.addEventListener("hashchange",render);render();
-document.getElementById("tg").onclick=function(){var r=document.documentElement,d=r.dataset.theme==="dark"||(!r.dataset.theme&&matchMedia("(prefers-color-scheme:dark)").matches);r.dataset.theme=d?"light":"dark"};
+ const hash=(location.hash||"#beranda").slice(1);
+ const app=document.getElementById("app");
+ const found=articles.find(a=>a.id===hash);
+ document.querySelectorAll("[data-page]").forEach(el=>el.classList.toggle("active",el.dataset.page===hash || (hash==="a1"||hash==="a2"||hash==="a3")&&el.dataset.page==="artikel"));
+ if(hash==="kuis")app.innerHTML=quiz();
+ else if(hash==="referensi")app.innerHTML=references();
+ else if(hash==="tentang")app.innerHTML=about();
+ else if(found)app.innerHTML=articlePage(found);
+ else app.innerHTML=home();
+ document.title=found?found.title+" — KenaliKlik":({kuis:"Kuis Mini",referensi:"Referensi",tentang:"Tentang Kampanye"}[hash]||"KenaliKlik — Jangan Asal Klik");
+ document.getElementById("navLinks").classList.remove("open");
+ document.getElementById("menuToggle").setAttribute("aria-expanded","false");
+ document.getElementById("menuToggle").textContent="☰";
+ window.scrollTo({top:0,behavior:"instant"});
+}
+document.addEventListener("click",function(e){
+ const opt=e.target.closest(".quiz-option");
+ if(opt){
+   const feedback=document.getElementById("quizFeedback");
+   if(!feedback)return;
+   feedback.classList.add("show");
+   if(opt.dataset.correct==="true"){feedback.innerHTML="<strong>Benar!</strong> Periksa status paket melalui aplikasi atau situs resmi kurir yang kamu buka sendiri. Jangan langsung percaya pada tautan dari pesan.";}
+   else{feedback.innerHTML="<strong>Belum tepat.</strong> Jangan terburu-buru mengeklik atau membagikan data. Verifikasi informasi melalui kanal resmi yang kamu buka secara mandiri.";}
+   document.querySelectorAll(".quiz-option").forEach(b=>b.disabled=true);
+ }
+ if(e.target.closest("#quizReset")){render();}
+});
+document.getElementById("menuToggle").addEventListener("click",function(){
+ const links=document.getElementById("navLinks"),open=links.classList.toggle("open");
+ this.setAttribute("aria-expanded",String(open));this.textContent=open?"✕":"☰";
+});
+window.addEventListener("hashchange",render);
+if(!location.hash)history.replaceState(null,"",location.pathname+location.search+"#beranda");
+render();
 </script>
 </body>
-</html>
+</html>'''
+
+# Fix image URL typo defensively and write file.
+html = html.replace('https://images.unsplash.com/photo-151632131?auto=format&fit=crop&w=1000&q=85', 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1000&q=85')
+out = Path("/mnt/data/index.html")
+out.write_text(html, encoding="utf-8")
+print(f"Created {out} ({out.stat().st_size:,} bytes)")
