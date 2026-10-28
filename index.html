@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#f7faf8">
-  <meta name="description" content="KenaliKlik adalah kampanye edukasi phishing dan keamanan digital untuk membantu pengguna internet mengenali penipuan online.">
+  <meta name="description" content="KenaliKlik — edukasi phishing dan keamanan digital.">
   <title>KenaliKlik — Kenali Modusnya, Lindungi Datamu</title>
 
   <style>
@@ -17,38 +18,24 @@
       --text: #1d302d;
       --muted: #71807b;
       --border: #e1e9e5;
-      --danger: #b54747;
-      --radius: 18px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
+      padding-bottom: 88px;
       background: var(--bg);
       color: var(--text);
       font-family: Arial, Helvetica, sans-serif;
       line-height: 1.7;
-      padding-bottom: 88px;
     }
 
-    button, a {
-      font: inherit;
-    }
-
-    button {
-      cursor: pointer;
-    }
-
-    a {
-      color: inherit;
-    }
+    button, a { font: inherit; }
+    button { cursor: pointer; }
+    a { color: inherit; }
 
     .container {
       width: min(100% - 40px, 1040px);
@@ -59,7 +46,7 @@
       position: sticky;
       top: 0;
       z-index: 10;
-      background: rgba(247, 250, 248, 0.94);
+      background: rgba(247,250,248,.95);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
@@ -82,35 +69,24 @@
       letter-spacing: -1px;
     }
 
-    .brand span {
-      color: var(--primary);
-    }
+    .brand span { color: var(--primary); }
 
     .top-tag {
-      font-size: 12px;
       color: var(--muted);
+      font-size: 12px;
       font-weight: 700;
     }
 
-    .page {
-      display: none;
-      min-height: 65vh;
-    }
+    .page { display: none; min-height: 65vh; }
 
     .page.active {
       display: block;
-      animation: appear 0.25s ease;
+      animation: appear .25s ease;
     }
 
     @keyframes appear {
-      from {
-        opacity: 0;
-        transform: translateY(5px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .eyebrow {
@@ -122,39 +98,30 @@
       text-transform: uppercase;
     }
 
-    h1, h2, h3, p {
-      overflow-wrap: anywhere;
-    }
+    h1, h2, h3, p { overflow-wrap: anywhere; }
+    h1, h2, h3 { line-height: 1.25; }
 
-    h1, h2, h3 {
-      line-height: 1.25;
-    }
+    /* BERANDA */
 
-    .hero {
-      padding: 76px 0 62px;
-    }
+    .hero { padding: 58px 0 45px; }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.25fr 0.75fr;
+      grid-template-columns: 1fr 1fr;
       align-items: center;
-      gap: 40px;
+      gap: 42px;
     }
 
     .hero h1 {
-      max-width: 660px;
-      margin: 16px 0;
-      font-size: clamp(38px, 6vw, 62px);
+      margin: 15px 0;
+      font-size: clamp(38px, 5vw, 58px);
       line-height: 1.1;
       letter-spacing: -2px;
     }
 
-    .hero h1 span {
-      color: var(--primary);
-    }
+    .hero h1 span { color: var(--primary); }
 
     .hero p {
-      max-width: 600px;
       color: var(--muted);
       font-size: 16px;
     }
@@ -163,7 +130,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 28px;
+      margin-top: 25px;
     }
 
     .btn {
@@ -172,112 +139,85 @@
       justify-content: center;
       border: 1px solid var(--primary);
       border-radius: 12px;
-      padding: 12px 19px;
+      padding: 11px 18px;
       background: var(--primary);
       color: white;
       font-weight: 700;
       text-decoration: none;
-      transition: 0.2s;
     }
 
-    .btn:hover {
-      background: var(--primary-dark);
-    }
+    .btn:hover { background: var(--primary-dark); }
 
     .btn.secondary {
       background: transparent;
       color: var(--primary);
     }
 
-    .btn.secondary:hover {
-      background: var(--primary-light);
-    }
+    .btn.secondary:hover { background: var(--primary-light); }
 
-    .hero-art {
-      min-height: 300px;
-      padding: 28px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 28px;
-      background: var(--primary-light);
+    .hero-image {
       position: relative;
       overflow: hidden;
+      border-radius: 25px;
+      background: var(--primary-light);
+      aspect-ratio: 4 / 3;
     }
 
-    .shield {
-      width: 160px;
-      height: 180px;
-      display: grid;
-      place-items: center;
-      background: var(--primary);
-      color: white;
-      font-size: 78px;
-      clip-path: polygon(50% 0, 94% 16%, 88% 66%, 50% 100%, 12% 66%, 6% 16%);
+    .hero-image img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
-    .art-note {
+    .image-caption {
       position: absolute;
-      background: white;
-      padding: 10px 14px;
-      border-radius: 12px;
-      box-shadow: 0 6px 24px #183e3012;
-      font-size: 12px;
+      right: 15px;
+      bottom: 15px;
+      left: 15px;
+      padding: 12px 16px;
+      border: 1px solid rgba(255,255,255,.5);
+      border-radius: 13px;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(8px);
+      font-size: 13px;
       font-weight: 700;
     }
 
-    .art-note.one {
-      top: 25px;
-      left: 18px;
-    }
-
-    .art-note.two {
-      right: 16px;
-      bottom: 25px;
-    }
-
-    .section {
-      padding: 38px 0 58px;
-    }
+    .section { padding: 35px 0 55px; }
 
     .section-heading {
       display: flex;
       align-items: end;
       justify-content: space-between;
       gap: 16px;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
 
     .section-heading h2 {
       margin: 8px 0 0;
       font-size: clamp(25px, 4vw, 34px);
-      letter-spacing: -0.8px;
     }
 
     .text-link {
+      padding: 8px 0;
       border: 0;
       background: transparent;
       color: var(--primary);
       font-weight: 800;
-      text-decoration: none;
-      padding: 8px 0;
-    }
-
-    .text-link:hover {
-      text-decoration: underline;
     }
 
     .feature-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0,1fr));
       gap: 18px;
     }
 
     .feature-card {
-      padding: 23px;
-      background: var(--surface);
+      padding: 22px;
       border: 1px solid var(--border);
-      border-radius: var(--radius);
+      border-radius: 18px;
+      background: white;
     }
 
     .feature-icon {
@@ -290,117 +230,111 @@
       font-size: 22px;
     }
 
-    .feature-card h3 {
-      margin: 15px 0 8px;
-      font-size: 18px;
-    }
-
-    .feature-card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
+    .feature-card h3 { margin: 14px 0 7px; }
+    .feature-card p { margin: 0; color: var(--muted); font-size: 14px; }
 
     .callout {
-      margin: 12px 0 60px;
-      padding: 30px;
-      border-radius: 22px;
-      background: var(--primary);
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 24px;
-    }
-
-    .callout h2 {
-      margin: 0 0 8px;
-    }
-
-    .callout p {
-      margin: 0;
-      color: #e0f1ec;
-    }
-
-    .callout .btn {
-      background: white;
-      color: var(--primary-dark);
-      border-color: white;
-      flex-shrink: 0;
-    }
-
-    /* SEMUA ARTIKEL */
-
-    .articles-page {
-      padding-top: 48px;
-      padding-bottom: 60px;
-    }
-
-    .articles-heading {
-      max-width: 720px;
-      margin-bottom: 32px;
-    }
-
-    .articles-heading h1 {
-      margin: 10px 0;
-      font-size: clamp(34px, 5vw, 46px);
-      letter-spacing: -1.3px;
-    }
-
-    .articles-heading p {
-      color: var(--muted);
-      margin: 0;
-    }
-
-    .article-list {
-      border-top: 1px solid var(--border);
-    }
-
-    .article-card {
-      width: 100%;
+      margin: 10px 0 55px;
+      padding: 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 22px;
-      padding: 27px 8px;
+      border-radius: 22px;
+      background: var(--primary);
+      color: white;
+    }
+
+    .callout h2 { margin: 0 0 8px; }
+    .callout p { margin: 0; color: #e0f1ec; }
+
+    .callout .btn {
+      flex-shrink: 0;
+      background: white;
+      color: var(--primary-dark);
+      border-color: white;
+    }
+
+    /* DAFTAR ARTIKEL */
+
+    .articles-page { padding-top: 45px; padding-bottom: 60px; }
+
+    .articles-heading {
+      max-width: 720px;
+      margin-bottom: 30px;
+    }
+
+    .articles-heading h1 {
+      margin: 9px 0;
+      font-size: clamp(34px, 5vw, 46px);
+      letter-spacing: -1.3px;
+    }
+
+    .articles-heading p { color: var(--muted); margin: 0; }
+
+    .article-list { border-top: 1px solid var(--border); }
+
+    .article-card {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 210px minmax(0,1fr) 38px;
+      align-items: center;
+      gap: 23px;
+      padding: 23px 8px;
       border: 0;
       border-bottom: 1px solid var(--border);
       background: transparent;
-      text-align: left;
       color: var(--text);
-      transition: 0.2s;
+      text-align: left;
+      transition: background .2s, padding .2s;
     }
 
     .article-card:hover {
-      padding-left: 16px;
-      padding-right: 16px;
+      padding-left: 15px;
+      padding-right: 15px;
       background: #eef6f2;
     }
 
-    .article-info {
-      flex: 1;
-      min-width: 0;
+    .article-thumb {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      border-radius: 14px;
+      background: var(--primary-light);
     }
+
+    .article-thumb img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .3s ease;
+    }
+
+    .article-card:hover .article-thumb img { transform: scale(1.04); }
+
+    .article-info { min-width: 0; }
 
     .article-category {
       display: inline-block;
-      margin-bottom: 9px;
+      margin-bottom: 7px;
       color: var(--primary);
       font-size: 12px;
       font-weight: 800;
-      letter-spacing: 0.5px;
+      letter-spacing: .4px;
     }
 
     .article-card h2 {
-      margin: 0 0 9px;
-      font-size: clamp(19px, 2.5vw, 24px);
-      letter-spacing: -0.4px;
+      margin: 0 0 8px;
+      font-size: clamp(18px, 2vw, 22px);
+      letter-spacing: -.3px;
     }
 
     .article-card p {
-      margin: 0 0 13px;
+      margin: 0 0 10px;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 13px;
+      line-height: 1.7;
     }
 
     .article-meta {
@@ -412,14 +346,13 @@
     }
 
     .article-arrow {
-      flex-shrink: 0;
-      width: 40px;
-      height: 40px;
+      width: 36px;
+      height: 36px;
       display: grid;
       place-items: center;
       border: 1px solid var(--border);
       border-radius: 50%;
-      font-size: 20px;
+      font-size: 19px;
     }
 
     .article-card:hover .article-arrow {
@@ -427,199 +360,140 @@
       color: white;
     }
 
-    /* ISI ARTIKEL */
+    /* DETAIL ARTIKEL */
 
-    .reading-page {
-      padding: 35px 0 70px;
-    }
+    .reading-page { padding: 32px 0 65px; }
 
     .back-link {
       display: inline-block;
       margin-bottom: 25px;
+      padding: 0;
       border: 0;
       background: transparent;
       color: var(--primary);
       font-weight: 800;
-      padding: 0;
     }
 
-    .article-body {
-      max-width: 760px;
-      margin: 0 auto;
+    .article-body { max-width: 760px; margin: auto; }
+
+    .detail-cover {
+      width: 100%;
+      aspect-ratio: 16 / 8;
+      margin: 18px 0 24px;
+      overflow: hidden;
+      border-radius: 20px;
+      background: var(--primary-light);
+    }
+
+    .detail-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .article-body h1 {
-      margin: 12px 0;
-      font-size: clamp(32px, 5vw, 46px);
-      letter-spacing: -1.3px;
+      margin: 10px 0;
+      font-size: clamp(31px, 5vw, 45px);
+      letter-spacing: -1px;
     }
 
-    .article-body .article-meta {
-      margin: 16px 0 26px;
-    }
+    .article-body .article-meta { margin: 15px 0 22px; }
 
     .article-lead {
-      font-size: 18px;
-      color: #52645e;
-      border-left: 4px solid var(--primary);
       padding-left: 18px;
-      margin: 24px 0;
+      border-left: 4px solid var(--primary);
+      color: #52645e;
+      font-size: 18px;
     }
 
-    .article-content h2 {
-      margin-top: 34px;
-      font-size: 25px;
-    }
+    .article-content h2 { margin-top: 32px; font-size: 24px; }
 
     .article-content p,
     .article-content li {
       color: #455750;
-      font-size: 16px;
+      font-size: 15px;
       line-height: 1.9;
     }
 
     .article-content ul,
-    .article-content ol {
-      padding-left: 24px;
-    }
+    .article-content ol { padding-left: 24px; }
 
     .tip-box {
-      margin: 25px 0;
-      padding: 20px;
-      background: var(--primary-light);
+      margin: 24px 0;
+      padding: 18px;
       border-radius: 14px;
+      background: var(--primary-light);
     }
 
-    .tip-box strong {
-      color: var(--primary-dark);
-    }
+    .tip-box strong { color: var(--primary-dark); }
 
     /* KUIS */
 
-    .content-page {
-      padding: 48px 0 70px;
-    }
+    .content-page { padding: 45px 0 65px; }
 
-    .content-heading {
-      max-width: 700px;
-      margin-bottom: 28px;
-    }
+    .content-heading { max-width: 700px; margin-bottom: 27px; }
 
     .content-heading h1 {
-      font-size: clamp(32px, 5vw, 44px);
       margin: 10px 0;
-      letter-spacing: -1px;
+      font-size: clamp(32px, 5vw, 44px);
     }
 
-    .content-heading p {
-      color: var(--muted);
-    }
+    .content-heading p { color: var(--muted); }
 
     .quiz-card {
       max-width: 760px;
-      padding: 28px;
-      background: white;
+      padding: 26px;
       border: 1px solid var(--border);
       border-radius: 22px;
+      background: white;
     }
 
-    .quiz-progress {
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 700;
-      margin-bottom: 15px;
-    }
+    .quiz-progress { margin-bottom: 13px; color: var(--muted); font-size: 13px; }
+    .quiz-card h2 { font-size: 22px; }
+    .quiz-message { padding: 14px; border-radius: 12px; background: #f3f7f5; }
 
-    .quiz-card h2 {
-      font-size: 22px;
-      margin: 0 0 12px;
-    }
-
-    .quiz-message {
-      padding: 15px;
-      background: #f3f7f5;
-      border-radius: 12px;
-      margin: 18px 0;
-      font-size: 15px;
-    }
-
-    .quiz-options {
-      display: grid;
-      gap: 10px;
-    }
+    .quiz-options { display: grid; gap: 10px; }
 
     .quiz-option {
       width: 100%;
-      text-align: left;
-      padding: 14px 16px;
-      background: white;
+      padding: 13px 15px;
       border: 1px solid var(--border);
       border-radius: 12px;
+      background: white;
       color: var(--text);
+      text-align: left;
     }
 
-    .quiz-option:hover:not(:disabled) {
-      border-color: var(--primary);
-      background: #f1f8f5;
-    }
-
-    .quiz-option:disabled {
-      cursor: default;
-      opacity: 0.9;
-    }
-
-    .quiz-option.correct {
-      border-color: var(--primary);
-      background: var(--primary-light);
-    }
-
-    .quiz-option.wrong {
-      border-color: #e0a0a0;
-      background: #fff0f0;
-    }
+    .quiz-option:hover:not(:disabled) { border-color: var(--primary); }
+    .quiz-option:disabled { cursor: default; }
+    .quiz-option.correct { background: var(--primary-light); border-color: var(--primary); }
+    .quiz-option.wrong { background: #fff0f0; border-color: #e0a0a0; }
 
     .quiz-feedback {
-      margin: 18px 0;
-      padding: 15px;
+      margin-top: 16px;
+      padding: 14px;
       border-radius: 12px;
       background: #f3f7f5;
     }
 
-    .quiz-feedback:empty {
-      display: none;
-    }
+    .quiz-feedback:empty { display: none; }
 
-    .quiz-controls {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 18px;
-    }
+    .quiz-controls { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
 
-    /* REFERENSI */
+    /* REFERENSI DAN TENTANG */
 
-    .reference-list {
-      display: grid;
-      gap: 14px;
-      max-width: 760px;
-    }
+    .reference-list { display: grid; gap: 13px; max-width: 760px; }
 
-    .reference-card {
-      padding: 20px;
-      background: white;
+    .reference-card, .about-card {
+      padding: 21px;
       border: 1px solid var(--border);
       border-radius: 16px;
+      background: white;
     }
 
-    .reference-card h3 {
-      margin: 0 0 6px;
-    }
-
-    .reference-card p {
-      color: var(--muted);
-      margin: 0 0 10px;
-      font-size: 14px;
-    }
+    .reference-card h3 { margin: 0 0 6px; }
+    .reference-card p { color: var(--muted); margin: 0 0 10px; font-size: 14px; }
 
     .reference-card a {
       color: var(--primary);
@@ -627,19 +501,9 @@
       text-decoration: none;
     }
 
-    .reference-card a:hover {
-      text-decoration: underline;
-    }
+    .reference-card a:hover { text-decoration: underline; }
 
-    /* TENTANG */
-
-    .about-card {
-      max-width: 760px;
-      padding: 30px;
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 22px;
-    }
+    .about-card { max-width: 760px; padding: 28px; }
 
     .avatar {
       width: 76px;
@@ -651,20 +515,11 @@
       color: var(--primary);
       font-size: 32px;
       font-weight: 900;
-      margin-bottom: 18px;
-    }
-
-    .about-card h2 {
-      margin-bottom: 5px;
-    }
-
-    .about-card p {
-      color: var(--muted);
     }
 
     .site-footer {
+      padding: 23px 0;
       border-top: 1px solid var(--border);
-      padding: 25px 0;
       color: var(--muted);
       font-size: 12px;
       text-align: center;
@@ -680,16 +535,16 @@
       z-index: 20;
       display: flex;
       justify-content: center;
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(12px);
-      border-top: 1px solid var(--border);
       padding: 8px 8px calc(8px + env(safe-area-inset-bottom));
+      border-top: 1px solid var(--border);
+      background: rgba(255,255,255,.97);
+      backdrop-filter: blur(12px);
     }
 
     .nav-inner {
       width: min(100%, 600px);
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(5,1fr);
       gap: 4px;
     }
 
@@ -699,19 +554,16 @@
       align-items: center;
       justify-content: center;
       gap: 2px;
+      padding: 6px 2px;
       border: 0;
       border-radius: 12px;
-      padding: 6px 2px;
       background: transparent;
       color: #84918c;
       font-size: 10px;
       font-weight: 700;
     }
 
-    .nav-item .nav-icon {
-      font-size: 20px;
-      line-height: 1.4;
-    }
+    .nav-icon { font-size: 20px; line-height: 1.4; }
 
     .nav-item.active {
       background: var(--primary-light);
@@ -719,76 +571,46 @@
     }
 
     @media (max-width: 700px) {
-      .container {
-        width: min(100% - 30px, 1040px);
-      }
-
-      .hero {
-        padding: 45px 0 35px;
-      }
-
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 25px;
-      }
-
-      .hero-art {
-        min-height: 220px;
-      }
-
-      .shield {
-        width: 120px;
-        height: 140px;
-        font-size: 60px;
-      }
-
-      .feature-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .section-heading {
-        align-items: start;
-      }
-
-      .callout {
-        align-items: start;
-        flex-direction: column;
-        padding: 24px;
-      }
-
-      .articles-page,
-      .content-page {
-        padding-top: 32px;
-      }
+      .container { width: min(100% - 30px, 1040px); }
+      .hero { padding: 38px 0 25px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 23px; }
+      .hero h1 { font-size: clamp(37px, 10vw, 52px); }
+      .hero-image { aspect-ratio: 4 / 3; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .section-heading { align-items: start; }
+      .callout { flex-direction: column; align-items: start; padding: 23px; }
+      .articles-page, .content-page { padding-top: 32px; }
 
       .article-card {
-        gap: 12px;
-        padding: 22px 2px;
+        grid-template-columns: 105px minmax(0,1fr);
+        gap: 13px;
+        padding: 18px 2px;
       }
 
-      .article-arrow {
-        width: 32px;
-        height: 32px;
-      }
+      .article-arrow { display: none; }
+      .article-thumb { aspect-ratio: 3 / 4; }
+      .article-card h2 { font-size: 16px; }
+      .article-card p { font-size: 12px; line-height: 1.6; }
+      .article-category { font-size: 11px; }
+      .article-meta { font-size: 10px; gap: 5px; }
+      .quiz-card, .about-card { padding: 20px; }
+      .top-tag { font-size: 10px; }
+      .detail-cover { aspect-ratio: 4 / 3; }
+    }
 
-      .quiz-card,
-      .about-card {
-        padding: 21px;
-      }
-
-      .top-tag {
-        font-size: 10px;
-      }
+    @media (max-width: 380px) {
+      .article-card { grid-template-columns: 85px minmax(0,1fr); gap: 10px; }
+      .article-card h2 { font-size: 15px; }
+      .top-tag { display: none; }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
   <header class="topbar">
     <div class="container topbar-inner">
-      <button class="brand" onclick="showPage('beranda')" aria-label="KenaliKlik, kembali ke Beranda">
+      <button class="brand" onclick="showPage('beranda')">
         Kenali<span>Klik</span>
       </button>
       <span class="top-tag">Kenali Modusnya, Lindungi Datamu</span>
@@ -797,7 +619,7 @@
 
   <main>
 
-    <!-- HALAMAN BERANDA -->
+    <!-- BERANDA -->
     <section id="page-beranda" class="page active">
       <div class="container hero">
         <div class="hero-grid">
@@ -810,19 +632,18 @@
               dan pelajari cara melindungi data pribadimu bersama KenaliKlik.
             </p>
             <div class="hero-actions">
-              <button class="btn" onclick="showPage('artikel')">
-                Baca Artikel →
-              </button>
-              <button class="btn secondary" onclick="showPage('kuis')">
-                Coba Kuis
-              </button>
+              <button class="btn" onclick="showPage('artikel')">Baca Artikel →</button>
+              <button class="btn secondary" onclick="showPage('kuis')">Coba Kuis</button>
             </div>
           </div>
 
-          <div class="hero-art" aria-label="Ilustrasi perlindungan digital">
-            <div class="art-note one">🔒 Data pribadi</div>
-            <div class="shield">✓</div>
-            <div class="art-note two">🛡️ Tetap waspada!</div>
+          <div class="hero-image">
+            <img
+              src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1200&q=85"
+              alt="Ilustrasi keamanan digital dan perlindungan data"
+              onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=85';"
+            >
+            <div class="image-caption">🔐 Lindungi data. Periksa sebelum klik.</div>
           </div>
         </div>
       </div>
@@ -839,28 +660,19 @@
           <article class="feature-card">
             <div class="feature-icon">🎣</div>
             <h3>Kenali Phishing</h3>
-            <p>
-              Pelajari bagaimana penipu menyamar sebagai pihak tepercaya
-              untuk mendapatkan informasi pribadi.
-            </p>
+            <p>Pelajari bagaimana penipu menyamar sebagai pihak tepercaya untuk mencuri informasi pribadi.</p>
           </article>
 
           <article class="feature-card">
             <div class="feature-icon">🔐</div>
             <h3>Lindungi Akun</h3>
-            <p>
-              Pahami pentingnya menjaga kata sandi, kode OTP, dan informasi
-              sensitif agar tidak jatuh ke tangan orang lain.
-            </p>
+            <p>Pahami pentingnya menjaga kata sandi, kode OTP, dan informasi sensitif.</p>
           </article>
 
           <article class="feature-card">
             <div class="feature-icon">🔎</div>
             <h3>Periksa Sebelum Klik</h3>
-            <p>
-              Biasakan memeriksa pengirim, tautan, dan isi pesan sebelum
-              mengambil tindakan.
-            </p>
+            <p>Biasakan memeriksa pengirim, tautan, dan isi pesan sebelum mengambil tindakan.</p>
           </article>
         </div>
       </div>
@@ -876,7 +688,7 @@
       </div>
     </section>
 
-    <!-- HALAMAN SEMUA ARTIKEL -->
+    <!-- SEMUA ARTIKEL -->
     <section id="page-artikel" class="page">
       <div class="container articles-page">
         <div class="articles-heading">
@@ -887,26 +699,19 @@
             sederhana untuk melindungi diri dari penipuan digital.
           </p>
         </div>
-
-        <div id="article-list" class="article-list">
-          <!-- Daftar artikel dibuat otomatis oleh JavaScript -->
-        </div>
+        <div id="article-list" class="article-list"></div>
       </div>
     </section>
 
-    <!-- HALAMAN BACA ARTIKEL -->
+    <!-- DETAIL ARTIKEL -->
     <section id="page-baca" class="page">
       <div class="container reading-page">
-        <button class="back-link" onclick="showPage('artikel')">
-          ← Kembali ke Semua Artikel
-        </button>
-        <article id="article-detail" class="article-body">
-          <!-- Isi artikel ditampilkan oleh JavaScript -->
-        </article>
+        <button class="back-link" onclick="showPage('artikel')">← Kembali ke Semua Artikel</button>
+        <article id="article-detail" class="article-body"></article>
       </div>
     </section>
 
-    <!-- HALAMAN KUIS -->
+    <!-- KUIS -->
     <section id="page-kuis" class="page">
       <div class="container content-page">
         <div class="content-heading">
@@ -936,86 +741,56 @@
       </div>
     </section>
 
-    <!-- HALAMAN REFERENSI -->
+    <!-- REFERENSI -->
     <section id="page-referensi" class="page">
       <div class="container content-page">
         <div class="content-heading">
           <span class="eyebrow">Sumber Informasi</span>
           <h1>Referensi</h1>
-          <p>
-            Kunjungi sumber resmi berikut untuk mendapatkan informasi,
-            panduan, dan layanan pelaporan terkait keamanan digital.
-          </p>
+          <p>Kunjungi sumber resmi berikut untuk mendapatkan informasi dan edukasi keamanan digital.</p>
         </div>
 
         <div class="reference-list">
           <article class="reference-card">
             <h3>Otoritas Jasa Keuangan (OJK)</h3>
-            <p>
-              Informasi dan edukasi konsumen mengenai sektor jasa keuangan,
-              termasuk kewaspadaan terhadap penipuan.
-            </p>
-            <a href="https://www.ojk.go.id/" target="_blank" rel="noopener noreferrer">
-              Kunjungi situs OJK ↗
-            </a>
+            <p>Informasi dan edukasi konsumen sektor jasa keuangan.</p>
+            <a href="https://www.ojk.go.id/" target="_blank" rel="noopener noreferrer">Kunjungi situs OJK ↗</a>
           </article>
 
           <article class="reference-card">
             <h3>Indonesia Anti-Scam Centre (IASC)</h3>
-            <p>
-              Layanan untuk membantu penanganan laporan penipuan transaksi
-              keuangan melalui kanal resmi yang tersedia.
-            </p>
-            <a href="https://iasc.ojk.go.id/" target="_blank" rel="noopener noreferrer">
-              Kunjungi situs IASC ↗
-            </a>
+            <p>Kanal penanganan laporan penipuan transaksi keuangan.</p>
+            <a href="https://iasc.ojk.go.id/" target="_blank" rel="noopener noreferrer">Kunjungi situs IASC ↗</a>
           </article>
 
           <article class="reference-card">
             <h3>Badan Siber dan Sandi Negara (BSSN)</h3>
-            <p>
-              Informasi dan edukasi mengenai keamanan siber serta
-              perlindungan di ruang digital.
-            </p>
-            <a href="https://www.bssn.go.id/" target="_blank" rel="noopener noreferrer">
-              Kunjungi situs BSSN ↗
-            </a>
+            <p>Informasi keamanan siber dan perlindungan di ruang digital.</p>
+            <a href="https://www.bssn.go.id/" target="_blank" rel="noopener noreferrer">Kunjungi situs BSSN ↗</a>
           </article>
 
           <article class="reference-card">
             <h3>Kementerian Komunikasi dan Digital</h3>
-            <p>
-              Informasi kebijakan dan program literasi digital di Indonesia.
-            </p>
-            <a href="https://www.komdigi.go.id/" target="_blank" rel="noopener noreferrer">
-              Kunjungi situs Komdigi ↗
-            </a>
+            <p>Informasi kebijakan dan program literasi digital di Indonesia.</p>
+            <a href="https://www.komdigi.go.id/" target="_blank" rel="noopener noreferrer">Kunjungi situs Komdigi ↗</a>
           </article>
 
           <article class="reference-card">
             <h3>Aduan Konten</h3>
-            <p>
-              Kanal resmi untuk menyampaikan laporan terkait konten internet
-              yang diduga melanggar ketentuan.
-            </p>
-            <a href="https://aduankonten.id/" target="_blank" rel="noopener noreferrer">
-              Kunjungi Aduan Konten ↗
-            </a>
+            <p>Kanal pelaporan konten internet yang diduga melanggar ketentuan.</p>
+            <a href="https://aduankonten.id/" target="_blank" rel="noopener noreferrer">Kunjungi Aduan Konten ↗</a>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- HALAMAN TENTANG -->
+    <!-- TENTANG -->
     <section id="page-tentang" class="page">
       <div class="container content-page">
         <div class="content-heading">
           <span class="eyebrow">Tentang Kampanye</span>
           <h1>Mengenal KenaliKlik</h1>
-          <p>
-            Edukasi sederhana untuk membangun kebiasaan yang lebih aman
-            saat menggunakan internet.
-          </p>
+          <p>Edukasi sederhana untuk membangun kebiasaan yang lebih aman saat menggunakan internet.</p>
         </div>
 
         <div class="about-card">
@@ -1037,8 +812,8 @@
           <h3>Tujuan Kampanye</h3>
           <p>
             Membantu masyarakat mengenali tanda-tanda phishing, menjaga
-            keamanan akun, serta mengetahui langkah awal yang bisa dilakukan
-            saat menerima pesan mencurigakan.
+            keamanan akun, dan mengetahui langkah awal saat menerima
+            pesan mencurigakan.
           </p>
 
           <h3>Proyek</h3>
@@ -1065,53 +840,41 @@
   <nav class="bottom-nav" aria-label="Navigasi utama bawah">
     <div class="nav-inner">
       <button class="nav-item active" data-page="beranda" onclick="showPage('beranda')">
-        <span class="nav-icon">⌂</span>
-        <span>Beranda</span>
+        <span class="nav-icon">⌂</span><span>Beranda</span>
       </button>
-
       <button class="nav-item" data-page="artikel" onclick="showPage('artikel')">
-        <span class="nav-icon">▤</span>
-        <span>Artikel</span>
+        <span class="nav-icon">▤</span><span>Artikel</span>
       </button>
-
       <button class="nav-item" data-page="kuis" onclick="showPage('kuis')">
-        <span class="nav-icon">✓</span>
-        <span>Kuis</span>
+        <span class="nav-icon">✓</span><span>Kuis</span>
       </button>
-
       <button class="nav-item" data-page="referensi" onclick="showPage('referensi')">
-        <span class="nav-icon">◎</span>
-        <span>Referensi</span>
+        <span class="nav-icon">◎</span><span>Referensi</span>
       </button>
-
       <button class="nav-item" data-page="tentang" onclick="showPage('tentang')">
-        <span class="nav-icon">ⓘ</span>
-        <span>Tentang</span>
+        <span class="nav-icon">ⓘ</span><span>Tentang</span>
       </button>
     </div>
   </nav>
 
   <script>
-    /* DATA ARTIKEL */
-
     const articles = {
       phishing: {
         category: "Phishing",
         title: "Phishing: Ketika Penipu Menyamar Menjadi Pihak Tepercaya",
         date: "27 Okt 2026",
         readTime: "6 menit baca",
-        description:
-          "Penipu bisa menyamar sebagai bank, kurir, hingga layanan resmi untuk mencuri data pribadi. Kenali cara kerja phishing dan tanda-tanda yang perlu diwaspadai.",
-        lead:
-          "Satu pesan singkat bisa menjadi awal dari penipuan digital. Dengan menyamar sebagai pihak yang dikenal, pelaku phishing berusaha membuat korbannya percaya lalu menyerahkan informasi penting.",
+        image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1100&q=85",
+        description: "Penipu bisa menyamar sebagai bank, kurir, hingga layanan resmi untuk mencuri data pribadi. Kenali cara kerja phishing dan tanda-tanda yang perlu diwaspadai.",
+        lead: "Satu pesan singkat bisa menjadi awal dari penipuan digital. Dengan menyamar sebagai pihak yang dikenal, pelaku phishing berusaha membuat korbannya percaya lalu menyerahkan informasi penting.",
         content: `
           <h2>Apa Itu Phishing?</h2>
           <p>Phishing adalah upaya penipuan untuk memperoleh informasi sensitif dengan menyamar sebagai pihak tepercaya. Informasi yang diincar dapat berupa kata sandi, kode OTP, data pribadi, atau informasi keuangan.</p>
           <p>Pelaku dapat mengirim pesan melalui email, SMS, aplikasi percakapan, media sosial, atau membuat situs palsu yang menyerupai situs resmi.</p>
 
           <h2>Bagaimana Modus Ini Bekerja?</h2>
-          <p>Biasanya, pelaku membuat pesan yang terlihat meyakinkan. Korban mungkin diberi tahu bahwa paket tertahan, akun akan diblokir, transaksi mencurigakan terdeteksi, atau hadiah harus segera diklaim.</p>
-          <p>Pesan tersebut kemudian mengarahkan korban untuk mengeklik tautan, membuka lampiran, mengisi formulir, atau menghubungi nomor tertentu. Rasa takut dan urgensi sengaja digunakan agar korban tidak sempat memeriksa kebenaran pesan.</p>
+          <p>Pelaku biasanya membuat pesan yang terlihat meyakinkan. Korban mungkin diberi tahu bahwa paket tertahan, akun akan diblokir, transaksi mencurigakan terdeteksi, atau hadiah harus segera diklaim.</p>
+          <p>Pesan tersebut mengarahkan korban untuk mengeklik tautan, membuka lampiran, mengisi formulir, atau menghubungi nomor tertentu. Rasa takut dan urgensi digunakan agar korban tidak sempat memeriksa kebenaran pesan.</p>
 
           <h2>Tanda-Tanda yang Perlu Diwaspadai</h2>
           <ul>
@@ -1123,15 +886,15 @@
           </ul>
 
           <h2>Bagaimana Cara Melindungi Diri?</h2>
-          <p>Jangan langsung mengeklik tautan dari pesan yang tidak terduga. Periksa alamat situs secara teliti dan buka situs resmi melalui aplikasi atau alamat yang kamu ketik sendiri. Jika pesan mengatasnamakan suatu lembaga, konfirmasikan melalui kanal resmi lembaga tersebut.</p>
+          <p>Jangan langsung mengeklik tautan dari pesan yang tidak terduga. Periksa alamat situs secara teliti dan buka situs resmi melalui aplikasi atau alamat yang kamu ketik sendiri. Jika pesan mengatasnamakan suatu lembaga, konfirmasikan melalui kanal resminya.</p>
           <div class="tip-box"><strong>Ingat:</strong> jangan memberikan kata sandi, PIN, atau kode OTP kepada orang lain. Jangan mengambil keputusan hanya karena pesan membuatmu panik atau terburu-buru.</div>
 
           <h2>Jika Terlanjur Mengeklik Tautan</h2>
-          <p>Jika hanya membuka tautan, tutup halaman tersebut dan jangan memasukkan data apa pun. Jika sudah memasukkan kata sandi, segera ubah melalui situs atau aplikasi resmi. Periksa aktivitas akun, keluarkan sesi yang tidak dikenal, dan aktifkan autentikasi multifaktor jika tersedia.</p>
-          <p>Jika informasi keuangan atau dana sudah terlanjur disalahgunakan, segera hubungi penyedia layanan keuangan melalui kanal resmi dan gunakan kanal pelaporan yang sesuai.</p>
+          <p>Jika hanya membuka tautan, tutup halaman tersebut dan jangan memasukkan data apa pun. Jika sudah memasukkan kata sandi, segera ubah melalui situs atau aplikasi resmi. Periksa aktivitas akun dan keluarkan sesi yang tidak dikenal.</p>
+          <p>Jika informasi keuangan atau dana sudah disalahgunakan, segera hubungi penyedia layanan keuangan melalui kanal resmi.</p>
 
           <h2>Kesimpulan</h2>
-          <p>Phishing memanfaatkan kepercayaan dan kelengahan pengguna. Kebiasaan sederhana seperti memeriksa pengirim, memeriksa alamat situs, dan tidak membagikan kode rahasia dapat membantu mengurangi risiko penipuan digital.</p>
+          <p>Phishing memanfaatkan kepercayaan dan kelengahan pengguna. Kebiasaan memeriksa pengirim, alamat situs, dan menjaga kode rahasia dapat membantu mengurangi risiko penipuan digital.</p>
         `
       },
 
@@ -1140,72 +903,69 @@
         title: "OTP Bukan untuk Dibagikan: Lindungi Akun Digitalmu",
         date: "24 Okt 2026",
         readTime: "5 menit baca",
-        description:
-          "Kode OTP dapat menjadi pintu masuk bagi penipu untuk mengambil alih akunmu. Pahami fungsi OTP dan alasan kode ini harus dirahasiakan dalam kondisi apa pun.",
-        lead:
-          "Kode OTP mungkin hanya terdiri dari beberapa angka, tetapi kode tersebut bisa menjadi bagian penting dari proses verifikasi identitas dan keamanan akunmu.",
+        image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1100&q=85",
+        description: "Kode OTP dapat menjadi pintu masuk bagi penipu untuk mengambil alih akunmu. Pahami fungsi OTP dan alasan kode ini harus dirahasiakan.",
+        lead: "Kode OTP mungkin hanya terdiri dari beberapa angka, tetapi kode tersebut bisa menjadi bagian penting dari proses verifikasi identitas dan keamanan akunmu.",
         content: `
           <h2>Apa Itu OTP?</h2>
           <p>OTP atau One-Time Password adalah kode sekali pakai yang digunakan untuk memverifikasi tindakan tertentu, misalnya saat masuk ke akun atau mengonfirmasi transaksi. Kode ini biasanya dikirim melalui SMS, email, atau aplikasi autentikasi.</p>
-          <p>OTP memiliki masa berlaku terbatas. Namun, selama kode tersebut masih berlaku, orang lain yang mendapatkannya mungkin dapat menggunakannya untuk menyelesaikan proses verifikasi.</p>
 
           <h2>Mengapa OTP Harus Dirahasiakan?</h2>
           <p>Penipu dapat berpura-pura menjadi petugas bank, layanan pelanggan, kurir, atau pihak lain yang terlihat tepercaya. Mereka mungkin mengatakan bahwa kode dibutuhkan untuk membatalkan transaksi, menerima hadiah, atau memulihkan akun.</p>
-          <p>Padahal, kode tersebut bisa digunakan untuk memverifikasi tindakan yang dilakukan oleh pelaku. Karena itu, jangan pernah memberikan OTP kepada orang lain, termasuk kepada orang yang mengaku sebagai petugas resmi.</p>
+          <p>Padahal, kode tersebut bisa digunakan untuk memverifikasi tindakan yang dilakukan pelaku. Karena itu, jangan pernah memberikan OTP kepada orang lain, termasuk kepada orang yang mengaku sebagai petugas resmi.</p>
 
           <h2>Modus Penipuan yang Sering Digunakan</h2>
           <ul>
             <li>Pelaku mengaku membantu menyelesaikan masalah akun.</li>
             <li>Pelaku meminta kode dengan alasan verifikasi atau pembatalan transaksi.</li>
             <li>Pelaku mengirim tautan palsu yang meminta kode OTP.</li>
-            <li>Pelaku membuat korban panik dengan klaim adanya transaksi mencurigakan.</li>
+            <li>Pelaku membuat korban panik dengan klaim transaksi mencurigakan.</li>
           </ul>
 
           <h2>Cara Menjaga Keamanan OTP</h2>
           <ol>
             <li>Jangan membagikan kode OTP kepada siapa pun.</li>
-            <li>Jangan memasukkan kode pada situs yang berasal dari tautan mencurigakan.</li>
-            <li>Baca informasi pada pesan OTP untuk memahami tindakan yang sedang diverifikasi.</li>
+            <li>Jangan memasukkan kode pada situs dari tautan mencurigakan.</li>
+            <li>Baca informasi pada pesan OTP untuk memahami tindakan yang diverifikasi.</li>
             <li>Gunakan aplikasi atau situs resmi saat masuk ke akun.</li>
             <li>Aktifkan fitur keamanan tambahan jika tersedia.</li>
           </ol>
 
-          <div class="tip-box"><strong>Perlu diingat:</strong> jika kamu menerima kode OTP padahal tidak sedang melakukan proses masuk atau transaksi, jangan berikan kode tersebut. Periksa keamanan akun melalui aplikasi atau situs resmi.</div>
+          <div class="tip-box"><strong>Perlu diingat:</strong> jika kamu menerima kode OTP padahal tidak sedang melakukan proses masuk atau transaksi, jangan berikan kode tersebut. Periksa keamanan akun melalui kanal resmi.</div>
 
           <h2>Bagaimana Jika OTP Sudah Terlanjur Dibagikan?</h2>
           <p>Segera buka layanan resmi yang bersangkutan. Ubah kata sandi jika diperlukan, periksa aktivitas akun, keluarkan perangkat atau sesi yang tidak dikenal, dan hubungi layanan pelanggan resmi. Jika berkaitan dengan transaksi keuangan, segera hubungi penyedia layanan keuanganmu.</p>
 
           <h2>Kesimpulan</h2>
-          <p>OTP dibuat untuk membantu melindungi akun, bukan untuk dibagikan. Menjaga kode ini tetap rahasia merupakan salah satu langkah penting untuk mengurangi risiko pengambilalihan akun digital.</p>
+          <p>OTP dibuat untuk membantu melindungi akun, bukan untuk dibagikan. Menjaga kode ini tetap rahasia merupakan langkah penting untuk mengurangi risiko pengambilalihan akun digital.</p>
         `
       },
 
-      "pesan-mencurigakan": {
+      pesan: {
         category: "Tips Keamanan",
         title: "Dapat Pesan Mencurigakan? Lakukan 5 Langkah Ini",
         date: "21 Okt 2026",
         readTime: "4 menit baca",
-        description:
-          "Jangan terburu-buru mengeklik tautan atau membalas pesan. Pelajari lima langkah sederhana untuk memeriksa pesan, melindungi akun, dan melaporkan dugaan penipuan.",
-        lead:
-          "Pesan yang terlihat resmi belum tentu benar. Ketika menerima pesan mencurigakan, berhenti sejenak dan periksa sebelum melakukan tindakan apa pun.",
+        image: "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&w=1100&q=85",
+        description: "Jangan terburu-buru mengeklik tautan atau membalas pesan. Pelajari lima langkah untuk memeriksa pesan dan melindungi akun.",
+        lead: "Pesan yang terlihat resmi belum tentu benar. Ketika menerima pesan mencurigakan, berhenti sejenak dan periksa sebelum melakukan tindakan apa pun.",
         content: `
           <h2>1. Jangan Langsung Mengeklik Tautan</h2>
           <p>Hindari membuka tautan atau lampiran dari pesan yang tidak terduga, terutama jika pesan meminta informasi pribadi atau mendesakmu untuk bertindak. Jangan memasukkan kata sandi atau kode OTP pada halaman yang belum dipastikan keasliannya.</p>
 
           <h2>2. Periksa Pengirim dan Isi Pesan</h2>
-          <p>Perhatikan alamat email, nomor pengirim, gaya bahasa, dan informasi yang disampaikan. Nama tampilan dapat dipalsukan, jadi jangan hanya mengandalkan nama pengirim. Pesan yang mengancam pemblokiran akun atau menjanjikan hadiah besar patut diperiksa lebih lanjut.</p>
+          <p>Perhatikan alamat email, nomor pengirim, gaya bahasa, dan informasi yang disampaikan. Nama tampilan dapat dipalsukan, jadi jangan hanya mengandalkan nama pengirim.</p>
 
           <h2>3. Verifikasi Melalui Kanal Resmi</h2>
-          <p>Jika pesan mengatasnamakan bank, perusahaan, atau instansi tertentu, buka aplikasi resmi atau ketik sendiri alamat situsnya. Hubungi layanan pelanggan menggunakan nomor yang tercantum pada situs resmi, bukan nomor yang diberikan dalam pesan mencurigakan.</p>
+          <p>Jika pesan mengatasnamakan bank, perusahaan, atau instansi tertentu, buka aplikasi resmi atau ketik sendiri alamat situsnya. Hubungi layanan pelanggan menggunakan nomor yang tercantum pada situs resmi.</p>
 
           <h2>4. Lindungi Akun dan Data Pribadi</h2>
-          <p>Jangan memberikan kata sandi, PIN, kode OTP, atau informasi keuangan kepada pihak yang tidak berwenang. Gunakan kata sandi yang kuat dan berbeda untuk setiap akun penting, serta aktifkan autentikasi multifaktor jika tersedia.</p>
+          <p>Jangan memberikan kata sandi, PIN, kode OTP, atau informasi keuangan kepada pihak yang tidak berwenang. Gunakan kata sandi yang kuat dan berbeda untuk akun penting serta aktifkan autentikasi multifaktor jika tersedia.</p>
 
           <h2>5. Simpan Bukti dan Laporkan</h2>
-          <p>Jika pesan diduga merupakan penipuan, simpan bukti yang relevan seperti tangkapan layar, alamat situs, dan informasi pengirim. Jangan menyebarkan data pribadi orang lain saat membagikan bukti. Laporkan melalui kanal resmi platform terkait atau lembaga yang sesuai.</p>
+          <p>Jika pesan diduga merupakan penipuan, simpan bukti yang relevan seperti tangkapan layar, alamat situs, dan informasi pengirim. Laporkan melalui kanal resmi platform terkait atau lembaga yang sesuai.</p>
 
-          <div class="tip-box"><strong>Kalau sudah terlanjur mengeklik:</strong> jangan panik. Tutup halaman, jangan mengunduh atau mengisi informasi tambahan, lalu amankan akun jika ada data yang sudah dimasukkan. Jika sudah terjadi kerugian finansial, segera hubungi penyedia layanan keuangan melalui kanal resmi.</div>
+          <div class="tip-box"><strong>Kalau sudah terlanjur mengeklik:</strong> jangan panik. Tutup halaman, jangan mengunduh atau mengisi informasi tambahan, lalu amankan akun jika ada data yang sudah dimasukkan. Jika terjadi kerugian finansial, segera hubungi penyedia layanan keuangan melalui kanal resmi.</div>
 
           <h2>Kesimpulan</h2>
           <p>Lima langkah sederhana ini dapat membantumu merespons pesan mencurigakan dengan lebih tenang. Berhenti sejenak, periksa, verifikasi, lindungi data, dan laporkan bila diperlukan.</p>
@@ -1213,13 +973,21 @@
       }
     };
 
-    /* MEMBUAT DAFTAR ARTIKEL OTOMATIS */
+    /* MEMBUAT KARTU ARTIKEL */
 
     function renderArticles() {
       const list = document.getElementById("article-list");
 
       list.innerHTML = Object.entries(articles).map(([id, article]) => `
         <button class="article-card" onclick="openArticle('${id}')">
+          <div class="article-thumb">
+            <img
+              src="${article.image}"
+              alt="${article.title}"
+              loading="lazy"
+              onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80';"
+            >
+          </div>
           <div class="article-info">
             <span class="article-category">${article.category}</span>
             <h2>${article.title}</h2>
@@ -1235,44 +1003,30 @@
       `).join("");
     }
 
-    /* NAVIGASI ANTARHALAMAN */
+    /* NAVIGASI */
 
     function showPage(pageName) {
-      const pageId = "page-" + pageName;
-
       document.querySelectorAll(".page").forEach(page => {
         page.classList.remove("active");
       });
 
-      const targetPage = document.getElementById(pageId);
-
-      if (targetPage) {
-        targetPage.classList.add("active");
-      }
+      const target = document.getElementById("page-" + pageName);
+      if (target) target.classList.add("active");
 
       document.querySelectorAll(".nav-item").forEach(button => {
-        button.classList.toggle(
-          "active",
-          button.dataset.page === pageName
-        );
+        button.classList.toggle("active", button.dataset.page === pageName);
       });
 
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    /* MEMBUKA ISI ARTIKEL */
+    /* MEMBUKA ARTIKEL */
 
     function openArticle(articleId) {
       const article = articles[articleId];
-
       if (!article) return;
 
-      const detail = document.getElementById("article-detail");
-
-      detail.innerHTML = `
+      document.getElementById("article-detail").innerHTML = `
         <span class="eyebrow">${article.category}</span>
         <h1>${article.title}</h1>
         <div class="article-meta">
@@ -1280,73 +1034,74 @@
           <span>·</span>
           <span>${article.readTime}</span>
         </div>
+        <div class="detail-cover">
+          <img src="${article.image}" alt="${article.title}">
+        </div>
         <p class="article-lead">${article.lead}</p>
         <div class="article-content">${article.content}</div>
-        <button class="btn secondary" onclick="showPage('artikel')">
-          ← Baca Artikel Lainnya
-        </button>
+        <button class="btn secondary" onclick="showPage('artikel')">← Baca Artikel Lainnya</button>
       `;
 
       showPage("baca");
     }
 
-    /* DATA KUIS */
+    /* KUIS */
 
     const quizQuestions = [
       {
-        question: "Kamu menerima pesan yang mengaku dari bank dan meminta kode OTP untuk membatalkan transaksi mencurigakan.",
+        question: "Kamu menerima pesan yang mengaku dari bank dan meminta kode OTP untuk membatalkan transaksi.",
         message: "“Akun Anda terancam diblokir. Kirim kode OTP sekarang untuk membatalkan transaksi.”",
         options: [
           "Memberikan OTP karena pengirim mengaku dari bank",
           "Mengabaikan permintaan OTP dan memeriksa melalui kanal resmi bank",
-          "Meneruskan OTP kepada teman untuk meminta pendapat"
+          "Meneruskan OTP kepada teman"
         ],
         answer: 1,
-        explanation: "Benar! Jangan membagikan OTP. Periksa informasi melalui aplikasi atau layanan resmi bank."
+        explanation: "Jangan membagikan OTP. Periksa informasi melalui aplikasi atau layanan resmi bank."
       },
       {
         question: "Sebuah pesan menyatakan kamu memenangkan hadiah, tetapi harus mengeklik tautan dan memasukkan kata sandi.",
-        message: "“Selamat! Kamu mendapatkan hadiah spesial. Klaim sekarang sebelum kesempatan berakhir.”",
+        message: "“Selamat! Kamu mendapatkan hadiah spesial. Klaim sekarang!”",
         options: [
           "Mengeklik tautan agar tidak kehilangan hadiah",
-          "Mengisi data jika tampilan situs terlihat menarik",
-          "Mencurigai pesan tersebut dan memverifikasi melalui sumber resmi"
+          "Mengisi data jika situs terlihat menarik",
+          "Mencurigai pesan dan memverifikasi melalui sumber resmi"
         ],
         answer: 2,
-        explanation: "Tepat! Hadiah yang disertai desakan dan permintaan data sensitif merupakan tanda yang perlu diwaspadai."
+        explanation: "Hadiah yang disertai desakan dan permintaan data sensitif merupakan tanda yang perlu diwaspadai."
       },
       {
         question: "Kamu menerima kode OTP padahal tidak sedang masuk ke akun.",
         message: "Ada kode verifikasi masuk secara tiba-tiba melalui SMS.",
         options: [
-          "Memberikan kode kepada orang yang menghubungi untuk membantu",
+          "Memberikan kode kepada orang yang menghubungi",
           "Tidak membagikan kode dan memeriksa keamanan akun melalui kanal resmi",
-          "Mengunggah kode ke media sosial untuk bertanya"
+          "Mengunggah kode ke media sosial"
         ],
         answer: 1,
-        explanation: "Benar! Jangan membagikan kode. Periksa aktivitas akun melalui layanan resminya."
+        explanation: "Jangan membagikan kode. Periksa aktivitas akun melalui layanan resminya."
       },
       {
-        question: "Seseorang mengirim tautan yang mirip dengan alamat situs resmi, tetapi memiliki ejaan yang berbeda.",
+        question: "Tautan yang dikirim seseorang mirip dengan alamat situs resmi, tetapi ejaannya berbeda.",
         message: "Alamat situs terlihat hampir sama dengan situs yang biasa kamu gunakan.",
         options: [
-          "Memeriksa alamat dengan teliti dan membuka situs resmi secara mandiri",
+          "Memeriksa alamat dan membuka situs resmi secara mandiri",
           "Tetap masuk karena tampilannya terlihat sama",
-          "Memasukkan data terlebih dahulu untuk menguji situs"
+          "Memasukkan data untuk menguji situs"
         ],
         answer: 0,
-        explanation: "Betul! Situs palsu dapat meniru tampilan situs resmi. Periksa alamat dengan teliti dan gunakan alamat resmi."
+        explanation: "Situs palsu dapat meniru tampilan situs resmi. Periksa alamat dan gunakan situs resmi."
       },
       {
         question: "Kamu terlanjur memasukkan kata sandi pada situs yang ternyata mencurigakan.",
         message: "Setelah mengisi formulir, kamu menyadari alamat situsnya tidak benar.",
         options: [
-          "Membiarkannya karena kata sandi sudah terlanjur dikirim",
-          "Segera mengganti kata sandi melalui situs resmi dan memeriksa aktivitas akun",
+          "Membiarkannya saja",
+          "Mengganti kata sandi melalui situs resmi dan memeriksa aktivitas akun",
           "Mengirim kata sandi baru kepada pengirim pesan"
         ],
         answer: 1,
-        explanation: "Benar! Segera amankan akun melalui layanan resmi, periksa aktivitas masuk, dan aktifkan fitur keamanan tambahan jika tersedia."
+        explanation: "Segera amankan akun melalui layanan resmi dan periksa aktivitas masuk."
       }
     ];
 
@@ -1356,89 +1111,71 @@
 
     function renderQuestion() {
       const progress = document.getElementById("quiz-progress");
-      const questionTitle = document.getElementById("quiz-question");
+      const title = document.getElementById("quiz-question");
       const message = document.getElementById("quiz-message");
-      const optionsContainer = document.getElementById("quiz-options");
+      const options = document.getElementById("quiz-options");
       const feedback = document.getElementById("quiz-feedback");
-      const nextButton = document.getElementById("quiz-next");
-      const restartButton = document.getElementById("quiz-restart");
+      const next = document.getElementById("quiz-next");
+      const restart = document.getElementById("quiz-restart");
 
       quizAnswered = false;
       feedback.innerHTML = "";
-      nextButton.hidden = true;
-      restartButton.hidden = true;
+      next.hidden = true;
+      restart.hidden = true;
 
       if (quizIndex >= quizQuestions.length) {
         progress.textContent = "Kuis selesai";
-        questionTitle.textContent = "Skor kamu: " + quizScore + " dari " + quizQuestions.length;
+        title.textContent = "Skor kamu: " + quizScore + " dari " + quizQuestions.length;
         message.textContent = quizScore === quizQuestions.length
           ? "Hebat! Kamu berhasil menjawab semua pertanyaan dengan benar."
           : "Terus belajar mengenali tanda-tanda penipuan digital agar semakin waspada.";
-        optionsContainer.innerHTML = "";
-        restartButton.hidden = false;
+        options.innerHTML = "";
+        restart.hidden = false;
         return;
       }
 
-      const question = quizQuestions[quizIndex];
+      const q = quizQuestions[quizIndex];
+      progress.textContent = "Pertanyaan " + (quizIndex + 1) + " dari " + quizQuestions.length;
+      title.textContent = q.question;
+      message.textContent = q.message;
 
-      progress.textContent =
-        "Pertanyaan " + (quizIndex + 1) + " dari " + quizQuestions.length;
-
-      questionTitle.textContent = question.question;
-      message.textContent = question.message;
-
-      optionsContainer.innerHTML = question.options.map((option, index) => `
-        <button class="quiz-option" onclick="answerQuestion(${index})">
-          ${String.fromCharCode(65 + index)}. ${option}
+      options.innerHTML = q.options.map((option, i) => `
+        <button class="quiz-option" onclick="answerQuestion(${i})">
+          ${String.fromCharCode(65 + i)}. ${option}
         </button>
       `).join("");
     }
 
-    function answerQuestion(selectedIndex) {
+    function answerQuestion(selected) {
       if (quizAnswered || quizIndex >= quizQuestions.length) return;
 
       quizAnswered = true;
-
-      const question = quizQuestions[quizIndex];
+      const q = quizQuestions[quizIndex];
       const options = document.querySelectorAll(".quiz-option");
-      const feedback = document.getElementById("quiz-feedback");
 
-      options.forEach((button, index) => {
+      options.forEach((button, i) => {
         button.disabled = true;
-
-        if (index === question.answer) {
-          button.classList.add("correct");
-        }
-
-        if (index === selectedIndex && selectedIndex !== question.answer) {
-          button.classList.add("wrong");
-        }
+        if (i === q.answer) button.classList.add("correct");
+        if (i === selected && selected !== q.answer) button.classList.add("wrong");
       });
 
-      if (selectedIndex === question.answer) {
+      if (selected === q.answer) {
         quizScore++;
-        feedback.innerHTML = "<strong>Jawaban benar!</strong><br>" + question.explanation;
+        document.getElementById("quiz-feedback").innerHTML =
+          "<strong>Jawaban benar!</strong><br>" + q.explanation;
       } else {
-        feedback.innerHTML = "<strong>Belum tepat.</strong><br>" + question.explanation;
+        document.getElementById("quiz-feedback").innerHTML =
+          "<strong>Belum tepat.</strong><br>" + q.explanation;
       }
 
       document.getElementById("quiz-next").hidden = false;
-
-      if (quizIndex === quizQuestions.length - 1) {
-        document.getElementById("quiz-next").textContent = "Lihat Hasil";
-      }
+      document.getElementById("quiz-next").textContent =
+        quizIndex === quizQuestions.length - 1 ? "Lihat Hasil" : "Pertanyaan Berikutnya →";
     }
 
     function nextQuestion() {
       if (!quizAnswered) return;
-
       quizIndex++;
-
-      document.getElementById("quiz-next").textContent =
-        quizIndex >= quizQuestions.length - 1
-          ? "Lihat Hasil"
-          : "Pertanyaan Berikutnya →";
-
       renderQuestion();
     }
 
@@ -1446,14 +1183,9 @@
       quizIndex = 0;
       quizScore = 0;
       quizAnswered = false;
-
-      document.getElementById("quiz-next").textContent =
-        "Pertanyaan Berikutnya →";
-
+      document.getElementById("quiz-next").textContent = "Pertanyaan Berikutnya →";
       renderQuestion();
     }
-
-    /* INISIALISASI */
 
     renderArticles();
     renderQuestion();
