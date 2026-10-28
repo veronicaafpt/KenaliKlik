@@ -1,6 +1,4 @@
-from pathlib import Path
-
-html = r'''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="utf-8">
@@ -15,7 +13,7 @@ html = r'''<!DOCTYPE html>
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.7 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.7 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;padding-bottom:88px}
 a{color:inherit}
 button{font:inherit}
 .site-header{position:sticky;top:0;z-index:20;background:rgba(16,43,78,.97);color:#fff;backdrop-filter:blur(12px);box-shadow:0 3px 18px #102b4e18}
@@ -23,10 +21,8 @@ button{font:inherit}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:auto;font-weight:850;font-size:1.3rem;letter-spacing:-.04em}
 .brand-mark{width:37px;height:37px;border-radius:12px;background:var(--gold);display:grid;place-items:center;color:var(--navy);font-size:1.05rem;font-weight:950}
 .brand span span{color:var(--gold)}
-.nav-links{display:flex;align-items:center;gap:23px}
-.nav-links a{color:#e1eaf2;text-decoration:none;font-size:.9rem;font-weight:650}
-.nav-links a:hover,.nav-links a.active{color:var(--gold)}
-.menu-toggle{display:none;border:1px solid #ffffff55;background:transparent;color:#fff;border-radius:10px;padding:6px 11px}
+.nav-links{display:none}
+.menu-toggle{display:none}
 main{min-height:70vh}
 .container{width:min(1120px,calc(100% - 40px));margin:auto}
 .hero-wrap{background:var(--navy);color:#fff;overflow:hidden}
@@ -49,8 +45,8 @@ main{min-height:70vh}
 .photo-label{position:absolute;bottom:24px;left:24px;right:24px;color:#fff}
 .photo-label small{color:var(--gold);font-weight:850;text-transform:uppercase;letter-spacing:.1em}
 .photo-label h2{font-size:1.5rem;line-height:1.25;margin:5px 0}
-.float-note{position:absolute;right:0;bottom:0;background:var(--gold);color:var(--navy);padding:17px 20px;border-radius:16px;box-shadow:var(--shadow);font-weight:850;max-width:190px;line-height:1.35}
-.float-note span{display:block;font-size:.8rem;font-weight:600;margin-top:5px}
+.float-note{display:none}
+.float-note span{display:none}
 .quick-rules{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:-1px}
 .rule{padding:22px 24px;background:#fff;border:1px solid var(--line);border-top:3px solid var(--teal)}
 .rule strong{display:block;color:var(--navy);font-size:1.03rem}
@@ -118,7 +114,12 @@ h2.section-title{font-size:clamp(1.8rem,3vw,2.55rem);line-height:1.15;letter-spa
 .about-copy h2{margin:0 0 10px;color:var(--navy)}
 .about-copy p{color:#4f6170}
 .about-copy ul{padding-left:20px}
-.site-footer{background:var(--navy);color:#d3e0eb;padding:34px 0}
+.site-footer{background:var(--navy);color:#d3e0eb;padding:34px 0 42px}
+.bottom-nav{position:fixed;z-index:50;left:0;right:0;bottom:0;background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -8px 28px rgba(16,43,78,.09);backdrop-filter:blur(14px);padding:8px max(12px,env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+.bottom-nav a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-decoration:none;color:var(--muted);font-size:.69rem;font-weight:750;line-height:1.2;padding:5px 2px;border-radius:12px}
+.bottom-nav a .nav-icon{width:29px;height:29px;border-radius:10px;display:grid;place-items:center;font-size:1rem;background:#edf2f4;color:var(--navy)}
+.bottom-nav a.active{color:var(--teal)}
+.bottom-nav a.active .nav-icon{background:var(--navy);color:var(--gold)}
 .footer-inner{display:flex;justify-content:space-between;gap:25px;align-items:center}
 .footer-brand{font-weight:900;color:#fff;font-size:1.2rem}
 .footer-brand span{color:var(--gold)}
@@ -137,15 +138,10 @@ h2.section-title{font-size:clamp(1.8rem,3vw,2.55rem);line-height:1.15;letter-spa
 }
 @media(max-width:600px){
  .nav{padding:11px 18px;gap:12px}
- .menu-toggle{display:block}
- .nav-links{display:none;position:absolute;top:62px;left:0;right:0;background:var(--navy);padding:12px 20px 20px;flex-direction:column;align-items:stretch;gap:0;border-top:1px solid #ffffff22}
- .nav-links.open{display:flex}
- .nav-links a{padding:11px 2px;border-bottom:1px solid #ffffff18}
  .container{width:calc(100% - 32px)}
  .hero{padding:38px 0 45px}
  .hero-visual{min-height:280px}
  .hero-photo{inset:0 16px 18px 0}
- .float-note{max-width:160px;padding:12px;font-size:.9rem}
  .quick-rules{grid-template-columns:1fr;gap:0}
  .rule{padding:17px 20px}
  .section{padding:45px 0}
@@ -163,16 +159,8 @@ h2.section-title{font-size:clamp(1.8rem,3vw,2.55rem);line-height:1.15;letter-spa
 </head>
 <body>
 <header class="site-header">
-  <nav class="nav container" aria-label="Navigasi utama">
+  <nav class="nav container" aria-label="Identitas situs">
     <a class="brand" href="#beranda" aria-label="KenaliKlik Beranda"><span class="brand-mark">K!</span><span>Kenali<span>Klik</span></span></a>
-    <button class="menu-toggle" id="menuToggle" aria-label="Buka menu" aria-expanded="false">☰</button>
-    <div class="nav-links" id="navLinks">
-      <a href="#beranda" data-page="beranda">Beranda</a>
-      <a href="#artikel" data-page="artikel">Artikel</a>
-      <a href="#kuis" data-page="kuis">Kuis Mini</a>
-      <a href="#referensi" data-page="referensi">Referensi</a>
-      <a href="#tentang" data-page="tentang">Tentang</a>
-    </div>
   </nav>
 </header>
 
@@ -190,6 +178,13 @@ h2.section-title{font-size:clamp(1.8rem,3vw,2.55rem);line-height:1.15;letter-spa
     </div>
   </div>
 </footer>
+<nav class="bottom-nav" aria-label="Navigasi utama bawah">
+  <a href="#beranda" data-page="beranda"><span class="nav-icon" aria-hidden="true">⌂</span><span>Beranda</span></a>
+  <a href="#artikel" data-page="artikel"><span class="nav-icon" aria-hidden="true">▤</span><span>Artikel</span></a>
+  <a href="#kuis" data-page="kuis"><span class="nav-icon" aria-hidden="true">?</span><span>Kuis</span></a>
+  <a href="#referensi" data-page="referensi"><span class="nav-icon" aria-hidden="true">◎</span><span>Referensi</span></a>
+  <a href="#tentang" data-page="tentang"><span class="nav-icon" aria-hidden="true">♡</span><span>Tentang</span></a>
+</nav>
 
 <script>
 const articles = [
@@ -249,7 +244,7 @@ const articles = [
  id:"a3", category:"Langkah Aman", date:"Panduan praktis", read:"4 menit baca",
  title:"Dapat Pesan Mencurigakan? Lakukan 5 Langkah Ini",
  summary:"Lima langkah sederhana dan checklist cepat sebelum kamu memercayai sebuah pesan.",
- image:"https://images.unsplash.com/photo-151632131 широк?auto=format&fit=crop&w=1000&q=85".replace(" широк",""),
+ image:"https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1000&q=85",
  alt:"Seseorang menggunakan ponsel untuk memeriksa pesan",
  body:`
 <p>Pesan singkat yang menawarkan hadiah, pemberitahuan paket, hingga peringatan masalah rekening sering muncul di ponsel kita. Sebagian pesan memang berasal dari pihak yang sah, tetapi ada juga yang digunakan untuk melakukan penipuan digital.</p>
@@ -269,8 +264,7 @@ function card(a){
  return `<article class="article-card"><div class="article-image"><img src="${a.image}" alt="${a.alt}" loading="lazy" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#d8e9e5,#a9c8d0)'"><span class="category">${a.category}</span></div><div class="article-content"><div class="article-meta">${a.date} · ${a.read}</div><h3>${a.title}</h3><p>${a.summary}</p><a class="read-link" href="#${a.id}">Baca artikel <span aria-hidden="true">→</span></a></div></article>`;
 }
 function home(){
- return `<section class="hero-wrap"><div class="container hero"><div><div class="eyebrow">Social campaign · keamanan digital</div><h1>Jangan asal <em>klik.</em><br>Jaga jejak digitalmu.</h1><p>KenaliKlik mengajak kita mengenali phishing, menjaga kode OTP, dan bertindak tepat saat menerima pesan mencurigakan. Satu langkah kecil bisa membantu melindungi data pribadi.</p><div class="actions"><a class="btn btn-primary" href="#artikel">Jelajahi artikel <span aria-hidden="true">→</span></a><a class="btn btn-ghost" href="#kuis">Coba kuis mini</a></div></div><div class="hero-visual"><div class="hero-photo"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=90" alt="Ilustrasi jaringan keamanan siber"><div class="photo-shade"></div><div class="photo-label"><small>Kenali · Periksa · Lindungi</small><h2>Keamanan digital dimulai dari kebiasaan kita.</h2></div></div><div class="float-note">Berhenti sebelum klik.<span>Luangkan waktu untuk memeriksa pesan.</span></div></div></div></section>
- <div class="container quick-rules"><div class="rule"><strong>01 / Berhenti</strong><p>Jangan terburu-buru mengikuti pesan yang mendesak.</p></div><div class="rule"><strong>02 / Periksa</strong><p>Verifikasi pengirim dan alamat situs melalui kanal resmi.</p></div><div class="rule"><strong>03 / Laporkan</strong><p>Laporkan pesan yang terindikasi penipuan.</p></div></div>
+ return `<section class="hero-wrap"><div class="container hero"><div><div class="eyebrow">Social campaign · keamanan digital</div><h1>Jangan asal <em>klik.</em><br>Jaga jejak digitalmu.</h1><p>KenaliKlik mengajak kita mengenali phishing, menjaga kode OTP, dan bertindak tepat saat menerima pesan mencurigakan. Satu langkah kecil bisa membantu melindungi data pribadi.</p><div class="actions"><a class="btn btn-primary" href="#artikel">Jelajahi artikel <span aria-hidden="true">→</span></a><a class="btn btn-ghost" href="#kuis">Coba kuis mini</a></div></div><div class="hero-visual"><div class="hero-photo"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=90" alt="Ilustrasi jaringan keamanan siber"><div class="photo-shade"></div><div class="photo-label"><small>Kenali · Periksa · Lindungi</small><h2>Keamanan digital dimulai dari kebiasaan kita.</h2></div></div></div></div></section>
  <section class="section container" id="artikel"><div class="section-head"><div><div class="kicker">Bacaan pilihan</div><h2 class="section-title">Semua Artikel</h2></div><p>Informasi praktis agar kamu lebih waspada saat menerima pesan, tautan, dan permintaan data digital.</p></div><div class="article-grid">${articles.map(card).join("")}</div></section>
  <section class="section container" style="padding-top:0"><div class="campaign-band"><div><div class="kicker">Uji kewaspadaanmu</div><h2>Phishing atau bukan?</h2><p>Coba kuis mini KenaliKlik dan lihat apakah kamu sudah tahu langkah yang aman saat menerima pesan mencurigakan.</p></div><a class="btn btn-teal" href="#kuis">Mulai kuis <span aria-hidden="true">→</span></a></div></section>`;
 }
@@ -294,22 +288,19 @@ function references(){
  </div></section>`;
 }
 function about(){
- return `<section class="page container"><div class="page-intro"><div class="kicker">Tentang kampanye</div><h1>Lebih sadar, lebih aman.</h1><p>KenaliKlik dibuat untuk membantu pengguna internet mengenali tanda-tanda phishing dan membangun kebiasaan yang lebih aman saat beraktivitas digital.</p></div><div class="about-grid"><aside class="profile-card"><div class="profile-avatar" aria-hidden="true">VP</div><h2>Veronica Febriani Putri</h2><p>Mahasiswa Statistika<br>Institut Teknologi Sepuluh Nopember (ITS)</p><p style="margin-top:18px;font-size:.88rem">Penyusun kampanye edukasi KenaliKlik</p></aside><section class="about-copy"><div class="kicker">Latar belakang</div><h2>Mengapa KenaliKlik?</h2><p>Aktivitas digital memudahkan komunikasi dan transaksi, tetapi pesan palsu dan tautan berbahaya juga dapat dimanfaatkan untuk menipu pengguna. KenaliKlik hadir sebagai kampanye sosial sederhana untuk membantu pembaca berhenti sejenak, memeriksa informasi, dan mengambil tindakan yang lebih aman.</p><h2>Tujuan kampanye</h2><ul><li>Mengenalkan pengertian dan modus phishing.</li><li>Mendorong kebiasaan menjaga kata sandi, PIN, dan kode OTP.</li><li>Membagikan langkah praktis saat menerima pesan mencurigakan.</li><li>Mengarahkan pembaca ke sumber informasi dan pelaporan resmi.</li></ul><h2>Pesan utama</h2><p><strong>Jangan asal klik. Periksa sebelum percaya. Lindungi identitas digitalmu.</strong></p><p style="font-size:.88rem;color:var(--muted)">Proyek edukasi untuk tugas Aplikasi Teknologi dan Transformasi Digital (APTEKTRANSIDI).</p></section></div></section>`;
+ return `<section class="page container"><div class="page-intro"><div class="kicker">Tentang kampanye</div><h1>Lebih sadar, lebih aman.</h1><p>KenaliKlik dibuat untuk membantu pengguna internet mengenali tanda-tanda phishing dan membangun kebiasaan yang lebih aman saat beraktivitas digital.</p></div><div class="about-grid"><aside class="profile-card"><div class="profile-avatar" aria-hidden="true">V</div><h2>Veronica Febriani Putri</h2><p>Mahasiswa Statistika<br>Institut Teknologi Sepuluh Nopember (ITS)<br>NRP: 5003231121</p></aside><section class="about-copy"><div class="kicker">Latar belakang</div><h2>Mengapa KenaliKlik?</h2><p>Aktivitas digital memudahkan komunikasi dan transaksi, tetapi pesan palsu dan tautan berbahaya juga dapat dimanfaatkan untuk menipu pengguna. KenaliKlik hadir sebagai kampanye sosial sederhana untuk membantu pembaca berhenti sejenak, memeriksa informasi, dan mengambil tindakan yang lebih aman.</p><h2>Tujuan kampanye</h2><ul><li>Mengenalkan pengertian dan modus phishing.</li><li>Mendorong kebiasaan menjaga kata sandi, PIN, dan kode OTP.</li><li>Membagikan langkah praktis saat menerima pesan mencurigakan.</li><li>Mengarahkan pembaca ke sumber informasi dan pelaporan resmi.</li></ul><h2>Pesan utama</h2><p><strong>Jangan asal klik. Periksa sebelum percaya. Lindungi identitas digitalmu.</strong></p><p style="font-size:.88rem;color:var(--muted)">Proyek edukasi untuk tugas Aplikasi Teknologi dan Transformasi Digital (APTEKTRANSIDI).</p></section></div></section>`;
 }
 function render(){
  const hash=(location.hash||"#beranda").slice(1);
  const app=document.getElementById("app");
  const found=articles.find(a=>a.id===hash);
- document.querySelectorAll("[data-page]").forEach(el=>el.classList.toggle("active",el.dataset.page===hash || (hash==="a1"||hash==="a2"||hash==="a3")&&el.dataset.page==="artikel"));
+ document.querySelectorAll("[data-page]").forEach(el=>el.classList.toggle("active",el.dataset.page===hash || (hash==="a1"||hash==="a2"||hash==="a3")&&el.dataset.page==="artikel" || hash==="beranda"&&el.dataset.page==="beranda"));
  if(hash==="kuis")app.innerHTML=quiz();
  else if(hash==="referensi")app.innerHTML=references();
  else if(hash==="tentang")app.innerHTML=about();
  else if(found)app.innerHTML=articlePage(found);
  else app.innerHTML=home();
  document.title=found?found.title+" — KenaliKlik":({kuis:"Kuis Mini",referensi:"Referensi",tentang:"Tentang Kampanye"}[hash]||"KenaliKlik — Jangan Asal Klik");
- document.getElementById("navLinks").classList.remove("open");
- document.getElementById("menuToggle").setAttribute("aria-expanded","false");
- document.getElementById("menuToggle").textContent="☰";
  window.scrollTo({top:0,behavior:"instant"});
 }
 document.addEventListener("click",function(e){
@@ -324,19 +315,9 @@ document.addEventListener("click",function(e){
  }
  if(e.target.closest("#quizReset")){render();}
 });
-document.getElementById("menuToggle").addEventListener("click",function(){
- const links=document.getElementById("navLinks"),open=links.classList.toggle("open");
- this.setAttribute("aria-expanded",String(open));this.textContent=open?"✕":"☰";
-});
 window.addEventListener("hashchange",render);
 if(!location.hash)history.replaceState(null,"",location.pathname+location.search+"#beranda");
 render();
 </script>
 </body>
-</html>'''
-
-# Fix image URL typo defensively and write file.
-html = html.replace('https://images.unsplash.com/photo-151632131?auto=format&fit=crop&w=1000&q=85', 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1000&q=85')
-out = Path("/mnt/data/index.html")
-out.write_text(html, encoding="utf-8")
-print(f"Created {out} ({out.stat().st_size:,} bytes)")
+</html>
